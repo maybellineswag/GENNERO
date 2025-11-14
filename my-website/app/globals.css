@@ -1,0 +1,591 @@
+@import "tailwindcss";
+@import "./datepicker.css";
+
+:root {
+  /* Design System Colors */
+  --color-primary: #8ea9f4;
+  --color-primary-dark: #6b8ae0;
+  --color-primary-light: #b0c4f8;
+  --color-dark: #112250;
+  --color-dark-light: #1a3a7a;
+  --color-accent: #f7c7db;
+  --color-accent-light: #fce4ed;
+  --color-accent-dark: #f0a8c4;
+  
+  /* Text Colors */
+  --color-text-primary: #112250;
+  --color-text-secondary: #4a5568;
+  --color-text-light: #718096;
+  --color-text-white: #ffffff;
+  
+  /* Background Colors */
+  --color-bg-white: #ffffff;
+  --color-bg-light: #f7fafc;
+  --color-bg-gray: #f1f5f9;
+  
+  /* Liquid Glass Effect */
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-bg-dark: rgba(17, 34, 80, 0.6);
+  --glass-blur: 20px;
+  --glass-border: rgba(255, 255, 255, 0.3);
+  
+  /* Spacing Scale (Responsive) */
+  --spacing-xs: clamp(0.25rem, 0.2vw + 0.2rem, 0.375rem);
+  --spacing-sm: clamp(0.5rem, 0.4vw + 0.4rem, 0.75rem);
+  --spacing-md: clamp(1rem, 0.8vw + 0.8rem, 1.5rem);
+  --spacing-lg: clamp(1.5rem, 1.2vw + 1.2rem, 2.25rem);
+  --spacing-xl: clamp(2rem, 1.6vw + 1.6rem, 3rem);
+  --spacing-2xl: clamp(3rem, 2.4vw + 2.4rem, 4.5rem);
+  --spacing-3xl: clamp(4rem, 3.2vw + 3.2rem, 6rem);
+  
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 9999px;
+  
+  /* Typography Scale (Responsive) */
+  --font-size-xs: clamp(0.75rem, 0.6vw + 0.6rem, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 0.7vw + 0.7rem, 1rem);
+  --font-size-base: clamp(1rem, 0.8vw + 0.8rem, 1.125rem);
+  --font-size-lg: clamp(1.125rem, 0.9vw + 0.9rem, 1.25rem);
+  --font-size-xl: clamp(1.25rem, 1vw + 1rem, 1.5rem);
+  --font-size-2xl: clamp(1.5rem, 1.2vw + 1.2rem, 2rem);
+  --font-size-3xl: clamp(1.875rem, 1.5vw + 1.5rem, 2.5rem);
+  --font-size-4xl: clamp(2.25rem, 1.8vw + 1.8rem, 3rem);
+  --font-size-5xl: clamp(3rem, 2.4vw + 2.4rem, 4rem);
+  
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+@theme inline {
+  /* Color System */
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-light: var(--color-primary-light);
+  --color-dark: var(--color-dark);
+  --color-dark-light: var(--color-dark-light);
+  --color-accent: var(--color-accent);
+  --color-accent-light: var(--color-accent-light);
+  --color-accent-dark: var(--color-accent-dark);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-light: var(--color-text-light);
+  --color-text-white: var(--color-text-white);
+  --color-bg-white: var(--color-bg-white);
+  --color-bg-light: var(--color-bg-light);
+  --color-bg-gray: var(--color-bg-gray);
+  
+  /* Font System */
+  --font-sans: var(--font-daikon);
+  --font-mono: ui-monospace, 'Courier New', monospace;
+  
+  /* Spacing */
+  --spacing-xs: var(--spacing-xs);
+  --spacing-sm: var(--spacing-sm);
+  --spacing-md: var(--spacing-md);
+  --spacing-lg: var(--spacing-lg);
+  --spacing-xl: var(--spacing-xl);
+  --spacing-2xl: var(--spacing-2xl);
+  --spacing-3xl: var(--spacing-3xl);
+  
+  /* Border Radius */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-pill: var(--radius-pill);
+}
+
+/* Base Styles */
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  background: var(--color-bg-white);
+  color: var(--color-text-primary);
+  font-family: var(--font-daikon), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
+}
+
+/* Ensure all elements use Daikon font */
+*, *::before, *::after {
+  font-family: var(--font-daikon), system-ui, -apple-system, sans-serif !important;
+}
+
+/* Typography Utilities */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+h1 {
+  font-size: var(--font-size-5xl);
+}
+
+/* Hero heading override - ensure white text */
+section h1.motion-h1,
+section h1[style*="color"] {
+  color: #ffffff !important;
+}
+
+h2 {
+  font-size: var(--font-size-4xl);
+}
+
+h3 {
+  font-size: var(--font-size-3xl);
+}
+
+h4 {
+  font-size: var(--font-size-2xl);
+}
+
+h5 {
+  font-size: var(--font-size-xl);
+}
+
+h6 {
+  font-size: var(--font-size-lg);
+}
+
+/* Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  border-radius: var(--radius-pill);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  gap: var(--spacing-sm);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(142, 169, 244, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: var(--color-dark);
+  color: var(--color-text-white);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-dark-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(17, 34, 80, 0.4);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.btn-accent {
+  background-color: var(--color-accent);
+  color: var(--color-text-primary);
+}
+
+.btn-accent:hover {
+  background-color: var(--color-accent-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(247, 199, 219, 0.4);
+}
+
+/* Responsive Button Sizes */
+.btn-sm {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.btn-lg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+}
+
+/* Liquid Glass Effect */
+.liquid-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.liquid-glass-dark {
+  background: var(--glass-bg-dark);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Apple-like liquid glass enhancement */
+.liquid-glass-apple {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.24) 100%);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.5),
+    0 8px 20px rgba(17,34,80,0.1),
+    0 2px 6px rgba(17,34,80,0.06);
+  overflow: visible;
+}
+
+.liquid-glass-apple::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(120% 100% at 50% 0%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 60%);
+  mix-blend-mode: soft-light;
+}
+
+.liquid-glass-apple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  padding: 1px; /* simulated gradient ring */
+  background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.25));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Glass triangle notch for dropdowns - integrated into dropdown shape */
+.dropdown-with-notch {
+  position: relative;
+  transition: opacity 250ms ease-out, transform 250ms ease-out;
+}
+
+/* Dropdown container wrapper for exit animations */
+.dropdown-container {
+  transition: opacity 250ms ease-out, transform 250ms ease-out;
+}
+
+/* Exit animation state */
+.dropdown-closing {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.96);
+}
+
+.dropdown-closing .liquid-glass-apple {
+  opacity: 0;
+  transform: translateY(-4px) scale(0.96);
+}
+
+/* Dropdown animation - Stripe-style fade and scale */
+.dropdown-with-notch .liquid-glass-apple {
+  animation: dropdownFadeIn 250ms ease-out;
+  transition: opacity 250ms ease-out, transform 250ms ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Border outline triangle - larger triangle behind (creates white border) */
+.dropdown-with-notch::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: var(--notch-left, 50%);
+  right: var(--notch-right, auto);
+  width: 18px;
+  height: 9px;
+  background: rgba(255,255,255,0.35);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+  animation: notchFadeIn 250ms ease-out;
+  transition: opacity 250ms ease-out, transform 250ms ease-out;
+}
+
+@keyframes notchFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Main glass triangle */
+.dropdown-with-notch::after {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: var(--notch-left, 50%);
+  right: var(--notch-right, auto);
+  width: 16px;
+  height: 8px;
+  background: 
+    radial-gradient(120% 100% at 50% 0%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.24) 100%);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.5),
+    0 8px 20px rgba(17,34,80,0.1),
+    0 2px 6px rgba(17,34,80,0.06);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform: translateX(-50%);
+  z-index: 1;
+  mix-blend-mode: normal;
+  pointer-events: none;
+  animation: notchFadeIn 250ms ease-out;
+  transition: opacity 250ms ease-out, transform 250ms ease-out;
+}
+
+.dropdown-with-notch[data-notch-side="right"]::before {
+  left: auto;
+  right: var(--notch-right, 50%);
+  transform: translateX(50%);
+  top: -8px;
+  animation: notchFadeInRight 250ms ease-out;
+  transition: opacity 250ms ease-out, transform 250ms ease-out;
+}
+
+@keyframes notchFadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50%) translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(50%) translateY(0);
+  }
+}
+
+/* Floating arrow animation - moves right then floats left-right */
+@keyframes arrowFloat {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(3px);
+  }
+  50% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Arrow float on hover - triggers when parent link/button is hovered */
+a:hover .arrow-float-hover,
+button:hover .arrow-float-hover,
+.arrow-float-parent:hover .arrow-float-hover,
+.group:hover .arrow-float-hover,
+a:hover > .arrow-float-hover,
+button:hover > .arrow-float-hover {
+  animation: arrowFloat 2.5s ease-in-out infinite !important;
+}
+
+/* Also trigger on direct hover of arrow itself */
+.arrow-float-hover:hover {
+  animation: arrowFloat 2.5s ease-in-out infinite !important;
+}
+
+.dropdown-with-notch[data-notch-side="right"]::after {
+  left: auto;
+  right: var(--notch-right, 50%);
+  transform: translateX(50%);
+  top: -7px;
+  animation: notchFadeInRight 250ms ease-out;
+  transition: opacity 250ms ease-out, transform 250ms ease-out;
+}
+
+
+/* Glass Effect with Accent Dot */
+.liquid-glass-popup {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-dark);
+  font-weight: var(--font-weight-medium);
+}
+
+.liquid-glass-popup::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+/* Responsive Utilities */
+@media (max-width: 640px) {
+  .btn {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+  
+  .liquid-glass-popup {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Container Utilities */
+.container-responsive {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+}
+
+@media (min-width: 640px) {
+  .container-responsive {
+    max-width: 640px;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 768px) {
+  .container-responsive {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-responsive {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-responsive {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-responsive {
+    max-width: 1536px;
+  }
+}
+
+/* Text shadow utilities (adjustable via CSS variables) */
+.text-shadow {
+  /* Defaults; override with --ts-* on individual elements */
+  --ts-x: 0px;
+  --ts-y: 1px;
+  --ts-blur: 3px;
+  --ts-color: rgba(0, 0, 0, 0.2);
+  text-shadow: var(--ts-x) var(--ts-y) var(--ts-blur) var(--ts-color);
+}
+
+/* Convenience variants; can be mixed or overridden with inline vars */
+.text-shadow-subtle { --ts-y: 1px; --ts-blur: 2px; --ts-color: rgba(0, 0, 0, 0.15); }
+.text-shadow-soft { --ts-y: 1px; --ts-blur: 4px; --ts-color: rgba(0, 0, 0, 0.22); }
+.text-shadow-strong { --ts-y: 2px; --ts-blur: 6px; --ts-color: rgba(0, 0, 0, 0.30); }
+
+/* Scrollbar Hide Utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Card fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pink glow/flicker animation for alert dot */
+@keyframes pinkGlow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 6px rgba(247, 199, 219, 0.8), 0 0 12px rgba(247, 199, 219, 0.6);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 10px rgba(247, 199, 219, 1), 0 0 20px rgba(247, 199, 219, 0.8), 0 0 30px rgba(247, 199, 219, 0.4);
+  }
+}
+
+/* Slow bounce animation for scroll cue */
+@keyframes slowBounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}

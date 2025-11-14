@@ -1,0 +1,276 @@
+'use client';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+
+export default function Hero() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Hide scroll cue when user scrolls down more than 100px
+      setIsScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <section className="relative w-full h-screen overflow-hidden max-w-full">
+      {/* Full-screen background image */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/hero-image.png"
+          alt="Tým lékařek GENNERO kliniky"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        {/* Removed overlay to allow blend modes to interact directly with the image */}
+      </div>
+
+      {/* Content overlay */}
+      <div className="relative h-full flex flex-col">
+        {/* Spacer for navbar (navbar is positioned absolutely in Layout) */}
+        <div className="h-14 md:h-16"></div>
+
+        {/* Centered text content */}
+        <div className="flex-1 flex flex-col items-center justify-center text-center px-4 md:px-8 pt-8 md:pt-12 lg:pt-32">
+          <h1
+            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold !text-white leading-tight mb-2 md:mb-3 md:whitespace-nowrap mx-auto text-center text-shadow text-shadow-soft px-4"
+            style={{ 
+              color: '#ffffff', 
+              fontWeight: 600,
+              fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+              // Individual tuning for the heading shadow
+              ['--ts-y' as any]: '1px',
+              ['--ts-blur' as any]: '4px',
+              ['--ts-color' as any]: 'rgba(0,0,0,0.22)',
+              maxWidth: '100%'
+            }}
+          >
+            Péče, která začíná{' '}
+            <span
+              className="inline-block text-primary mix-blend-screen brightness-110 text-shadow"
+              style={{
+                // Slightly stronger for the accent word
+                ['--ts-y' as any]: '1px',
+                ['--ts-blur' as any]: '5px',
+                ['--ts-color' as any]: 'rgba(0,0,0,0.28)'
+              }}
+            >
+              důvěrou.
+            </span>
+          </h1>
+
+          <p
+            className="text-xl md:text-1xl lg:text-2xl text-white leading-tight mb-4 md:mb-6 max-w-4xl mx-auto text-center text-shadow text-shadow-subtle"
+            style={{ 
+              fontWeight: 500,
+              fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+              // Slightly lighter than heading
+              ['--ts-y' as any]: '1px',
+              ['--ts-blur' as any]: '3px',
+              ['--ts-color' as any]: 'rgba(0,0,0,0.20)'
+            }}
+          >
+            Moderní gynekologická a estetická klinika v{' '}
+            <span className="relative inline-block" style={{ marginLeft: '-6px' }}>
+              <span
+                className="inline-block drop-shadow shrink-0 align-middle"
+                style={{
+                  width: '1.1em',
+                  height: '1.1em',
+                  backgroundColor: 'var(--color-primary)',
+                  WebkitMaskImage: 'url(/icons/location.svg)',
+                  maskImage: 'url(/icons/location.svg)',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                  maskPosition: 'center',
+                  WebkitMaskSize: 'contain',
+                  maskSize: 'contain',
+                  transform: 'translateY(0.3em)',
+                  marginRight: '-8px',
+                  zIndex: 0,
+                  position: 'relative'
+                }}
+                aria-hidden="true"
+              />
+              <Link 
+                href="/kontakt#jak-nas-najdete"
+                style={{ 
+                  marginLeft: '-8px', 
+                  position: 'relative', 
+                  zIndex: 1,
+                  transition: 'color 0.2s ease-in-out'
+                }}
+                className="hover:text-primary cursor-pointer"
+              >
+                Teplicích.
+              </Link>
+            </span>
+            <br />
+            Spojujeme odbornost s lidským přístupem.
+          </p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 md:gap-6 mb-7 md:mb-9 justify-center items-center scale-85"
+          >
+            <Link
+              href="/sluzby"
+              className="btn btn-secondary text-center px-4 md:px-5 py-2 md:py-2.5 text-sm md:text-base font-semibold arrow-float-parent"
+              style={{ 
+                fontWeight: 600,
+                fontFamily: 'var(--font-daikon), system-ui, sans-serif'
+              }}
+            >
+              <span className="inline-flex items-center gap-1">
+                <span className="text-xl md:text-2xl leading-none">Naše služby</span>
+                {/* Baby blue arrow */}
+                <svg className="w-6 h-6 md:w-7 md:h-7 text-primary arrow-float-hover" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
+            </Link>
+            <Link
+              href="/objednat"
+              className="btn btn-primary text-center px-4 md:px-5 py-2 md:py-2.5 text-sm md:text-base font-semibold arrow-float-parent"
+              style={{ 
+                fontWeight: 600,
+                fontFamily: 'var(--font-daikon), system-ui, sans-serif'
+              }}
+            >
+              <span className="inline-flex items-center gap-1">
+                <span className="text-xl md:text-2xl leading-none">Objednat online</span>
+                {/* Dark blue arrow */}
+                <svg className="w-6 h-6 md:w-7 md:h-7 text-dark arrow-float-hover" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
+            </Link>
+          </motion.div>
+
+          {/* Divider line with gradient fading to transparency on both sides */}
+          <div className="container-responsive w-full mb-3 md:mb-4">
+            <div className="mx-auto w-11/12 md:w-3/4 h-px md:h-px bg-gradient-to-r from-transparent via-white/70 to-transparent"></div>
+          </div>
+
+          {/* Bottom informational snippets (inside centered content) */}
+          <motion.div
+            className="container-responsive pt-3 md:pt-4 overflow-x-hidden"
+          >
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-15 lg:gap-16 px-4 md:px-0">
+              {/* Tým certifikovaných lékařek */}
+              <div className="relative flex items-center pl-4 md:pl-0">
+                <span
+                  aria-hidden="true"
+                  className="absolute w-6 h-6 md:w-7 md:h-7 drop-shadow shrink-0 z-0"
+                  style={{
+                    backgroundColor: 'var(--color-primary)',
+                    WebkitMaskImage: 'url(/icons/doctorr.svg)',
+                    maskImage: 'url(/icons/doctorr.svg)',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'center',
+                    maskPosition: 'center',
+                    WebkitMaskSize: 'contain',
+                    maskSize: 'contain',
+                    left: '-12px',
+                    top: '45%',
+                    transform: 'translateY(-48%)'
+                  }}
+                />
+                <span className="relative z-10 text-white text-base md:text-lg font-medium text-shadow text-shadow-subtle -top-0.5 ml-3 md:ml-0">Tým certifikovaných lékařek</span>
+              </div>
+
+              {/* Doporučeno desítkami spokojených pacientek */}
+              <div className="relative flex items-center pl-4 md:pl-0">
+                <span
+                  aria-hidden="true"
+                  className="absolute w-6 h-6 md:w-7 md:h-7 drop-shadow shrink-0 z-0"
+                  style={{
+                    backgroundColor: 'var(--color-primary)',
+                    WebkitMaskImage: 'url(/icons/starr.svg)',
+                    maskImage: 'url(/icons/starr.svg)',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'center',
+                    maskPosition: 'center',
+                    WebkitMaskSize: 'contain',
+                    maskSize: 'contain',
+                    left: '-12px',
+                    top: '45%',
+                    transform: 'translateY(-48%)'
+                  }}
+                />
+                <span className="relative z-10 text-white text-base md:text-lg font-medium text-shadow text-shadow-subtle -top-0.5 ml-3 md:ml-0">Doporučeno desítkami spokojených pacientek</span>
+              </div>
+
+              {/* Působíme od roku 2019 */}
+              <div className="relative flex items-center pl-4 md:pl-0">
+                <span
+                  aria-hidden="true"
+                  className="absolute w-6 h-6 md:w-7 md:h-7 drop-shadow shrink-0 z-0"
+                  style={{
+                    backgroundColor: 'var(--color-primary)',
+                    WebkitMaskImage: 'url(/icons/timee.svg)',
+                    maskImage: 'url(/icons/timee.svg)',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'center',
+                    maskPosition: 'center',
+                    WebkitMaskSize: 'contain',
+                    maskSize: 'contain',
+                    left: '-16px',
+                    top: '45%',
+                    transform: 'translateY(-48%)'
+                  }}
+                />
+                <span className="relative z-10 text-white text-base md:text-lg font-medium text-shadow text-shadow-subtle -top-0.5 ml-3 md:ml-0">Působíme od roku 2019</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Alert: Nově nabízíme také kosmetologii */}
+          <div className="flex items-center justify-center gap-2 mt-4 md:mt-5">
+            <span
+              className="inline-block w-2 h-2 rounded-full shrink-0"
+              style={{
+                backgroundColor: '#f7c7db',
+                animation: 'pinkGlow 2s ease-in-out infinite'
+              }}
+              aria-hidden="true"
+            />
+            <span
+              className="text-white text-sm md:text-base font-medium text-shadow text-shadow-subtle"
+              style={{
+                fontFamily: 'var(--font-daikon), system-ui, sans-serif'
+              }}
+            >
+              Nově nabízíme také kosmetologii!
+            </span>
+          </div>
+        </div>
+
+        {/* Scroll cue */}
+        <div 
+          className={`absolute bottom-6 md:bottom-8 left-1/2 transition-opacity duration-300 ${
+            isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'
+          }`}
+          style={{
+            animation: isScrolled ? 'none' : 'slowBounce 3s ease-in-out infinite'
+          }}
+        >
+          <svg className="w-6 h-6 md:w-7 md:h-7 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M19 9l-7 7-7-7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+  );
+}

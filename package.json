@@ -1,0 +1,15 @@
+{
+  "name": "gennero-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd my-website && npm run dev",
+    "build": "cd my-website && npm run build",
+    "start": "cd my-website && npm run start",
+    "lint": "cd my-website && npm run lint",
+    "install": "cd my-website && npm install"
+  },
+  "description": "GENNERO Website - Modern gynecological and aesthetic clinic",
+  "package-lock": false
+}
+

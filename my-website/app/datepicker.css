@@ -1,0 +1,220 @@
+/* Date Picker Styling */
+.date-picker-input {
+  position: relative;
+  color: var(--color-text-primary);
+}
+
+/* Hide the default calendar picker indicator to use our custom icon */
+.date-picker-input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Firefox - hide the calendar button */
+.date-picker-input::-moz-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Time Picker Styling - Force 24-hour format (European time) */
+.time-picker-input {
+  position: relative;
+  color: var(--color-text-primary);
+  text-align: left;
+}
+
+/* Hide the default time picker indicator to use our custom icon */
+.time-picker-input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Firefox - hide the time picker button */
+.time-picker-input::-moz-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Style the native date picker input fields (browser-specific) */
+input[type="date"]::-webkit-datetime-edit {
+  padding: 0;
+  color: var(--color-text-primary);
+  font-family: var(--font-daikon), system-ui, sans-serif;
+  font-size: 0.875rem;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+  background: transparent;
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+  color: var(--color-text-secondary);
+  padding: 0 0.25rem;
+  font-weight: 500;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  color: var(--color-text-primary);
+  padding: 0 0.25rem;
+  font-weight: 500;
+  background: transparent;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field:focus,
+input[type="date"]::-webkit-datetime-edit-day-field:focus,
+input[type="date"]::-webkit-datetime-edit-year-field:focus {
+  background: var(--color-primary-light);
+  color: var(--color-dark);
+  outline: none;
+  border-radius: 2px;
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+input[type="date"]::-webkit-clear-button {
+  display: none;
+}
+
+/* Style time input - 24-hour format (European time) */
+input[type="time"] {
+  /* Force 24-hour format - no AM/PM */
+  color-scheme: light;
+}
+
+input[type="time"]::-webkit-datetime-edit {
+  padding: 0;
+  color: var(--color-text-primary);
+  font-family: var(--font-daikon), system-ui, sans-serif;
+  font-size: 0.875rem;
+}
+
+input[type="time"]::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+  background: transparent;
+}
+
+input[type="time"]::-webkit-datetime-edit-text {
+  color: var(--color-text-secondary);
+  padding: 0 0.25rem;
+  font-weight: 500;
+}
+
+/* Ensure 24-hour format - no AM/PM */
+input[type="time"]::-webkit-datetime-edit-hour-field,
+input[type="time"]::-webkit-datetime-edit-minute-field {
+  color: var(--color-text-primary);
+  padding: 0.25rem 0.5rem;
+  font-weight: 500;
+  background: transparent;
+  border-radius: 4px;
+  margin: 0 0.125rem;
+  transition: all 0.15s ease;
+  min-width: 2ch;
+}
+
+/* Hide AM/PM field completely - force 24-hour format */
+input[type="time"]::-webkit-datetime-edit-ampm-field {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+}
+
+/* Light blue highlight when focused (clicked) */
+input[type="time"]::-webkit-datetime-edit-hour-field:focus,
+input[type="time"]::-webkit-datetime-edit-minute-field:focus {
+  background: var(--color-primary-light) !important;
+  color: var(--color-dark) !important;
+  outline: none;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px rgba(142, 169, 244, 0.2);
+}
+
+/* Hover state */
+input[type="time"]::-webkit-datetime-edit-hour-field:hover,
+input[type="time"]::-webkit-datetime-edit-minute-field:hover {
+  background: rgba(142, 169, 244, 0.1);
+}
+
+input[type="time"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+input[type="time"]::-webkit-clear-button {
+  display: none;
+}
+
+/* Firefox specific styling */
+input[type="date"],
+input[type="time"] {
+  text-align: left;
+}
+
+/* Ensure Firefox uses 24-hour format */
+input[type="time"] {
+  -moz-appearance: textfield;
+}
+
+/* Ensure inputs use proper color scheme for light theme */
+input[type="date"],
+input[type="time"] {
+  color-scheme: light;
+}
+
+/* Custom hover and focus styling */
+.date-picker-input:hover,
+.time-picker-input:hover {
+  border-color: rgba(142, 169, 244, 0.5);
+}
+
+.date-picker-input:focus,
+.time-picker-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(142, 169, 244, 0.2);
+}
+
+/* Calendar popup styling - Note: Native calendar popups have limited styling */
+/* The popup appearance is mostly browser-controlled, but we ensure proper locale */
+
+/* For browsers that support it, ensure calendar uses light theme */
+@supports (color-scheme: light) {
+  input[type="date"] {
+    color-scheme: light;
+  }
+}
+
+/* Improve visual feedback */
+.date-picker-input:not([value=""]) {
+  font-weight: 500;
+}
+
+.time-picker-input:not([value=""]) {
+  font-weight: 500;
+}
+
