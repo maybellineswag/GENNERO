@@ -38,7 +38,7 @@ export default function Hero() {
         <div className="h-14 md:h-16"></div>
 
         {/* Centered text content */}
-        <div className="flex-1 flex flex-col items-start md:items-center justify-start md:justify-center text-left md:text-center px-4 md:px-8 pt-16 md:pt-12 lg:pt-32">
+        <div className="flex-1 flex flex-col items-start md:items-center justify-start md:justify-center text-left md:text-center px-4 md:px-8 pt-24 md:pt-20 lg:pt-40">
           {/* Alert: Nově nabízíme také kosmetologii - Mobile only, above heading */}
           <div className="mb-2 md:hidden">
             <div className="liquid-glass-apple rounded-full px-3 py-1.5 inline-flex items-center gap-1.5">
@@ -62,7 +62,7 @@ export default function Hero() {
           </div>
 
           <h1
-            className="hero-title-mobile md:text-6xl lg:text-7xl xl:text-8xl font-semibold !text-white mb-2 md:mb-3 md:whitespace-nowrap mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-soft px-0 md:px-4 w-full md:w-auto md:leading-tight"
+            className="hero-title-mobile md:text-5xl lg:text-6xl xl:text-7xl font-semibold !text-white mb-2 md:mb-3 md:whitespace-nowrap mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-soft px-0 md:px-4 w-full md:w-auto md:leading-tight"
             style={{ 
               color: '#ffffff', 
               fontWeight: 600,
@@ -90,7 +90,7 @@ export default function Hero() {
           </h1>
 
           <p
-            className="text-base md:text-1xl lg:text-2xl text-white leading-tight mb-4 md:mb-6 max-w-4xl mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-subtle"
+            className="text-sm md:text-lg lg:text-xl text-white leading-tight mb-4 md:mb-6 max-w-4xl mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-subtle"
             style={{ 
               fontWeight: 500,
               fontFamily: 'var(--font-daikon), system-ui, sans-serif',
@@ -101,9 +101,9 @@ export default function Hero() {
             }}
           >
             Moderní gynekologická a estetická klinika v{' '}
-            <span className="relative inline-block -ml-1 md:-ml-1.5">
+            <span className="relative inline-block ml-1 md:ml-2">
               <span
-                className="inline-block drop-shadow shrink-0 align-middle w-[0.75em] h-[0.75em] md:w-[0.9em] md:h-[0.9em] lg:w-[1.1em] lg:h-[1.1em]"
+                className="inline-block drop-shadow shrink-0 align-middle w-[0.75em] h-[0.75em] md:w-[0.75em] md:h-[0.75em] lg:w-[0.85em] lg:h-[0.85em]"
                 style={{
                   backgroundColor: 'var(--color-primary)',
                   WebkitMaskImage: 'url(/icons/location.svg)',
@@ -141,16 +141,16 @@ export default function Hero() {
           >
             <Link
               href="/sluzby"
-              className="btn btn-secondary hero-cta-btn text-center font-semibold arrow-float-parent"
+              className="btn btn-secondary text-center font-semibold arrow-float-parent"
               style={{ 
                 fontWeight: 600,
                 fontFamily: 'var(--font-daikon), system-ui, sans-serif'
               }}
             >
               <span className="inline-flex items-center gap-1">
-                <span className="text-base md:text-2xl leading-none">Naše služby</span>
+                <span className="text-xs md:text-2xl leading-none">Naše služby</span>
                 {/* Baby blue arrow */}
-                <svg className="w-4 h-4 md:w-7 md:h-7 text-primary arrow-float-hover" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <svg className="w-3.5 h-3.5 md:w-7 md:h-7 text-primary arrow-float-hover" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </span>
@@ -164,9 +164,9 @@ export default function Hero() {
               }}
             >
               <span className="inline-flex items-center gap-1">
-                <span className="text-base md:text-2xl leading-none">Objednat online</span>
+                <span className="text-xs md:text-2xl leading-none">Objednat online</span>
                 {/* Dark blue arrow */}
-                <svg className="w-4 h-4 md:w-7 md:h-7 text-dark arrow-float-hover" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <svg className="w-3.5 h-3.5 md:w-7 md:h-7 text-dark arrow-float-hover" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </span>
@@ -174,7 +174,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Divider line with gradient fading to transparency on both sides */}
-          <div className="container-responsive w-full mb-3 md:mb-4">
+          <div className="hidden md:block container-responsive w-full mb-3 md:mb-4">
             <div className="mx-0 md:mx-auto w-full md:w-3/4 h-px md:h-px bg-gradient-to-r from-transparent via-white/70 to-transparent"></div>
           </div>
 
@@ -182,12 +182,12 @@ export default function Hero() {
           <motion.div
             className="container-responsive pt-3 md:pt-4 overflow-x-hidden"
           >
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center gap-6 md:gap-15 lg:gap-16 px-0 md:px-4">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center gap-0 md:gap-15 lg:gap-16 px-0 md:px-4">
               {/* Tým certifikovaných lékařek */}
-              <div className="relative flex items-center pl-4 md:pl-0">
+              <div className="relative flex items-start justify-start w-full md:w-auto py-3 md:py-0 pl-4 md:pl-0">
                 <span
                   aria-hidden="true"
-                  className="absolute w-6 h-6 md:w-7 md:h-7 drop-shadow shrink-0 z-0"
+                  className="absolute w-6 h-6 md:w-7 md:h-7 drop-shadow shrink-0 z-0 top-[0.6em] md:top-[45%] md:-translate-y-[48%]"
                   style={{
                     backgroundColor: 'var(--color-primary)',
                     WebkitMaskImage: 'url(/icons/doctorr.svg)',
@@ -198,19 +198,20 @@ export default function Hero() {
                     maskPosition: 'center',
                     WebkitMaskSize: 'contain',
                     maskSize: 'contain',
-                    left: '-12px',
-                    top: '45%',
-                    transform: 'translateY(-48%)'
+                    left: '-12px'
                   }}
                 />
-                <span className="relative z-10 text-white text-base md:text-lg font-medium text-shadow text-shadow-subtle -top-0.5 ml-3 md:ml-0">Tým certifikovaných lékařek</span>
+                <span className="relative z-10 text-white text-sm md:text-lg font-medium text-shadow text-shadow-subtle ml-3 md:ml-0">Tým certifikovaných lékařek</span>
               </div>
 
+              {/* Divider line - Mobile only */}
+              <div className="w-full md:hidden h-px bg-gradient-to-r from-transparent via-white/70 to-transparent"></div>
+
               {/* Doporučeno desítkami spokojených pacientek */}
-              <div className="relative flex items-center pl-4 md:pl-0">
+              <div className="relative flex items-start justify-start w-full md:w-auto py-3 md:py-0 pl-4 md:pl-0">
                 <span
                   aria-hidden="true"
-                  className="absolute w-6 h-6 md:w-7 md:h-7 drop-shadow shrink-0 z-0"
+                  className="absolute w-6 h-6 md:w-7 md:h-7 drop-shadow shrink-0 z-0 top-[0.6em] md:top-[45%] md:-translate-y-[48%]"
                   style={{
                     backgroundColor: 'var(--color-primary)',
                     WebkitMaskImage: 'url(/icons/starr.svg)',
@@ -221,19 +222,20 @@ export default function Hero() {
                     maskPosition: 'center',
                     WebkitMaskSize: 'contain',
                     maskSize: 'contain',
-                    left: '-12px',
-                    top: '45%',
-                    transform: 'translateY(-48%)'
+                    left: '-12px'
                   }}
                 />
-                <span className="relative z-10 text-white text-base md:text-lg font-medium text-shadow text-shadow-subtle -top-0.5 ml-3 md:ml-0">Doporučeno desítkami spokojených pacientek</span>
+                <span className="relative z-10 text-white text-sm md:text-lg font-medium text-shadow text-shadow-subtle ml-3 md:ml-0">Doporučeno desítkami spokojených pacientek</span>
               </div>
 
+              {/* Divider line - Mobile only */}
+              <div className="w-full md:hidden h-px bg-gradient-to-r from-transparent via-white/70 to-transparent"></div>
+
               {/* Působíme od roku 2019 */}
-              <div className="relative flex items-center pl-4 md:pl-0">
+              <div className="relative flex items-start justify-start w-full md:w-auto py-3 md:py-0 pl-4 md:pl-0">
                 <span
                   aria-hidden="true"
-                  className="absolute w-6 h-6 md:w-7 md:h-7 drop-shadow shrink-0 z-0"
+                  className="absolute w-6 h-6 md:w-7 md:h-7 drop-shadow shrink-0 z-0 top-[0.6em] md:top-[45%] md:-translate-y-[48%]"
                   style={{
                     backgroundColor: 'var(--color-primary)',
                     WebkitMaskImage: 'url(/icons/timee.svg)',
@@ -244,12 +246,10 @@ export default function Hero() {
                     maskPosition: 'center',
                     WebkitMaskSize: 'contain',
                     maskSize: 'contain',
-                    left: '-16px',
-                    top: '45%',
-                    transform: 'translateY(-48%)'
+                    left: '-16px'
                   }}
                 />
-                <span className="relative z-10 text-white text-base md:text-lg font-medium text-shadow text-shadow-subtle -top-0.5 ml-3 md:ml-0">Působíme od roku 2019</span>
+                <span className="relative z-10 text-white text-sm md:text-lg font-medium text-shadow text-shadow-subtle ml-3 md:ml-0">Působíme od roku 2019</span>
               </div>
             </div>
           </motion.div>

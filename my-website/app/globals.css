@@ -484,20 +484,11 @@ button:hover > .arrow-float-hover {
 
 /* Responsive Utilities */
 @media (max-width: 640px) {
-  .btn {
-    padding: var(--spacing-xs) var(--spacing-md);
-    font-size: var(--font-size-sm);
-  }
-  
-  .hero-cta-btn {
-    padding-top: 1.125rem !important;
-    padding-bottom: 1.125rem !important;
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
-  }
+  /* Buttons should look identical on mobile as desktop - no size reduction */
+  /* .btn styles removed to match desktop appearance */
   
   .hero-title-mobile {
-    font-size: clamp(2.75rem, 8vw, 3.5rem) !important;
+    font-size: clamp(2.5rem, 7.5vw, 3.25rem) !important;
   }
   
   .liquid-glass-popup {
