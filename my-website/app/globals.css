@@ -268,6 +268,10 @@ h6 {
     0 8px 20px rgba(17,34,80,0.1),
     0 2px 6px rgba(17,34,80,0.06);
   overflow: visible;
+  /* Ensure backdrop-filter works on mobile */
+  transform: translateZ(0);
+  will-change: backdrop-filter;
+  -webkit-transform: translateZ(0);
 }
 
 .liquid-glass-apple::before {
@@ -587,5 +591,30 @@ button:hover > .arrow-float-hover {
   }
   50% {
     transform: translateX(-50%) translateY(10px);
+  }
+}
+
+/* Dropdown animations */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes expandDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+    transform: translateY(0);
   }
 }

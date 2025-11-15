@@ -273,6 +273,75 @@ export default function Contact() {
           ))}
         </div>
 
+        {/* Parking and Accessibility Section */}
+        <div className="max-w-6xl mx-auto px-8 md:px-16 lg:px-24 mb-16">
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Parking */}
+            <div className="p-6 md:p-8 rounded-2xl"
+              style={{
+                backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(17, 34, 80, 0.1)',
+              }}
+            >
+              <h3 
+                className="text-2xl md:text-3xl font-semibold mb-4"
+                style={{ 
+                  fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                  fontWeight: 600,
+                  color: 'var(--color-dark)',
+                  lineHeight: '1.2',
+                }}
+              >
+                Parkování
+              </h3>
+              <p 
+                className="text-base md:text-lg"
+                style={{ 
+                  fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                  fontWeight: 400,
+                  color: 'var(--color-text-secondary)',
+                  lineHeight: '1.6',
+                }}
+              >
+                Bezplatné parkování přímo v objektu ambulance
+              </p>
+            </div>
+
+            {/* Accessibility */}
+            <div className="p-6 md:p-8 rounded-2xl"
+              style={{
+                backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(17, 34, 80, 0.1)',
+              }}
+            >
+              <h3 
+                className="text-2xl md:text-3xl font-semibold mb-4"
+                style={{ 
+                  fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                  fontWeight: 600,
+                  color: 'var(--color-dark)',
+                  lineHeight: '1.2',
+                }}
+              >
+                Přístup
+              </h3>
+              <p 
+                className="text-base md:text-lg"
+                style={{ 
+                  fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                  fontWeight: 400,
+                  color: 'var(--color-text-secondary)',
+                  lineHeight: '1.6',
+                }}
+              >
+                Bezbariérový přístup
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Contact Form Section */}
         <div className="mb-16">
           <div className="max-w-4xl mx-auto">

@@ -128,6 +128,77 @@ export default function PricingPage() {
               title="KOSMETOLOGIE"
               services={kosmetologieServices}
             />
+
+            {/* Health Insurance Section */}
+            <div id="pojistovny" className="mb-8 md:mb-10 lg:mb-12 scroll-mt-32">
+              <h2 
+                className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 md:mb-6"
+                style={{ 
+                  fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                  fontWeight: 600,
+                  color: '#112250',
+                  lineHeight: '1.1',
+                }}
+              >
+                ZDRAVOTNÍ POJIŠŤOVNY
+              </h2>
+              
+              <p 
+                className="text-base md:text-lg mb-8 md:mb-10"
+                style={{ 
+                  fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                  fontWeight: 400,
+                  color: '#112250',
+                  lineHeight: '1.6',
+                }}
+              >
+                Spolupracujeme s následujícími zdravotními pojišťovnami:
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                {[
+                  { code: '111', name: 'Všeobecná zdravotní pojišťovna ČR' },
+                  { code: '201', name: 'Vojenská zdravotní pojišťovna ČR' },
+                  { code: '205', name: 'Česká průmyslová zdravotní pojišťovna ČR' },
+                  { code: '207', name: 'Oborová zdravotní poj. zam. bank, poj. a stav.' },
+                  { code: '211', name: 'Zdravotní pojišťovna ministerstva vnitra ČR' },
+                  { code: '209', name: 'Zaměstnanecká pojišťovna Škoda' },
+                  { code: '213', name: 'Revírní bratrská pokladna, zdrav. poj.' },
+                ].map((insurance, index) => (
+                  <div 
+                    key={index}
+                    className="flex items-start gap-3 md:gap-4 p-4 md:p-5 rounded-lg"
+                    style={{
+                      backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                      backdropFilter: 'blur(10px)',
+                      border: '1px solid rgba(17, 34, 80, 0.1)',
+                    }}
+                  >
+                    <span 
+                      className="text-lg md:text-xl font-bold whitespace-nowrap flex-shrink-0"
+                      style={{ 
+                        fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                        fontWeight: 700,
+                        color: '#112250',
+                      }}
+                    >
+                      {insurance.code}
+                    </span>
+                    <span 
+                      className="text-base md:text-lg"
+                      style={{ 
+                        fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                        fontWeight: 400,
+                        color: '#112250',
+                        lineHeight: '1.5',
+                      }}
+                    >
+                      {insurance.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 

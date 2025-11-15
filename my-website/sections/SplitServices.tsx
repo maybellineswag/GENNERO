@@ -31,6 +31,7 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
         '#elektro-epilace': 0,
         '#mikrojehlickovani': 1,
         '#chemicky-peeling': 2,
+        '#mezoterapie': 3,
       };
 
       if (hash === '#gynekologie' || hash === '#gynekology') {
@@ -99,6 +100,11 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
       href: '/sluzby#chemicky-peeling',
       icon: '/icons/chemicky-peeling.svg'
     },
+    { 
+      label: 'Mezoterapie', 
+      href: '/sluzby#mezoterapie',
+      icon: '/icons/mezoterapie.svg'
+    },
   ];
 
   return (
@@ -106,18 +112,19 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
       {/* Gynecology Side - Left */}
       <div 
         className={`relative overflow-hidden ${
+          expandedSide === 'cosmetology' ? 'w-0 opacity-0' :
           expandedSide === 'gynecology' ? 'w-full' :
           hoveredSide === 'gynecology' ? 'w-2/3' : 
           hoveredSide === 'cosmetology' ? 'w-1/3' : 'w-1/2'
         }`}
         style={{
-          willChange: 'width',
+          willChange: 'width, opacity',
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden',
           perspective: '1000px',
           isolation: 'isolate',
           contain: 'layout style paint',
-          transition: 'width 0.95s cubic-bezier(0.16, 1, 0.3, 1)'
+          transition: 'width 0.95s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1)'
         }}
         onMouseEnter={() => !expandedSide && setHoveredSide('gynecology')}
         onMouseLeave={() => !expandedSide && setHoveredSide(null)}
@@ -220,6 +227,20 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
                       </button>
                     )}
                     
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (selectedCardIndex !== null) {
+                          // If a card is selected, just deselect it
+                          setSelectedCardIndex(null);
+                        } else {
+                          // Otherwise, toggle the expanded state
+                          setExpandedSide(expandedSide === 'gynecology' ? null : 'gynecology');
+                          setHoveredSide(null);
+                        }
+                      }}
+                      className="group flex flex-col items-start gap-0 cursor-pointer arrow-float-parent self-start"
+                    >
                     {expandedSide !== 'gynecology' && (
                       <h2 
                         className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-0 text-shadow drop-shadow-xl whitespace-nowrap"
@@ -236,25 +257,11 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
                         Objevte
                       </h2>
                     )}
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        if (selectedCardIndex !== null) {
-                          // If a card is selected, just deselect it
-                          setSelectedCardIndex(null);
-                        } else {
-                          // Otherwise, toggle the expanded state
-                          setExpandedSide(expandedSide === 'gynecology' ? null : 'gynecology');
-                          setHoveredSide(null);
-                        }
-                      }}
-                      className="group inline-flex items-center gap-2 whitespace-nowrap cursor-pointer -mt-1 arrow-float-parent self-start"
-                    >
                       <span 
-                        className={`font-semibold border-b-3 border-primary text-primary text-shadow drop-shadow-xl transition-all duration-700 ${
+                        className={`font-semibold border-b-3 border-primary text-primary text-shadow drop-shadow-xl transition-all duration-700 whitespace-nowrap inline-flex items-center gap-2 ${
                           expandedSide === 'gynecology' 
-                            ? 'text-5xl md:text-6xl lg:text-7xl' 
-                            : 'text-3xl md:text-4xl lg:text-5xl'
+                            ? 'text-5xl md:text-6xl lg:text-7xl -mt-1' 
+                            : 'text-3xl md:text-4xl lg:text-5xl -mt-1'
                         }`}
                         style={{ 
                           fontFamily: 'var(--font-daikon), system-ui, sans-serif',
@@ -266,8 +273,7 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
                           ['--ts-color' as any]: 'rgba(0,0,0,0.6)'
                         }}
                       >
-                        Gynekologie
-                      </span>
+                        {expandedSide === 'gynecology' ? 'Gynekologie' : 'Gynekologii'}
                       {expandedSide !== 'gynecology' && selectedCardIndex === null && (
                         <svg 
                           className="w-7 h-7 md:w-8 md:h-8 text-primary arrow-float-hover drop-shadow-lg" 
@@ -278,6 +284,7 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
                           <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       )}
+                      </span>
                     </button>
                   </>
                 ) : (
@@ -1219,7 +1226,7 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
             priority
             unoptimized
             style={{ 
-              objectPosition: 'right center',
+              objectPosition: expandedSide === 'cosmetology' ? 'center center' : 'right center',
               willChange: 'object-position',
               WebkitTransform: 'translateZ(0)',
               backfaceVisibility: 'hidden'
@@ -1229,7 +1236,7 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
 
         {/* Content */}
         <div 
-          className={`relative h-full flex items-center justify-start px-6 md:px-10 lg:px-12 ${
+          className={`relative h-full flex items-center justify-start ${
             (hoveredSide === 'gynecology' || hoveredSide === 'cosmetology') && !expandedSide ? 'pt-8 md:pt-12' : ''
           }`}
           style={{
@@ -1240,9 +1247,13 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
           }}
         >
           <div 
-            className="flex flex-col items-start justify-center w-full max-w-2xl"
+            className={`flex flex-col justify-center w-full ${
+              expandedSide === 'cosmetology' ? 'items-start w-full' : 'items-start max-w-2xl px-6 md:px-10 lg:px-12'
+            } ${expandedSide === 'cosmetology' ? 'px-4 md:px-6 lg:px-8 xl:px-12' : ''}`}
             style={{
+              willChange: 'max-width, padding',
               transform: 'translateZ(0)',
+              transition: 'max-width 0.95s cubic-bezier(0.16, 1, 0.3, 1), padding 0.95s cubic-bezier(0.16, 1, 0.3, 1)',
               backfaceVisibility: 'hidden'
             }}
           >
@@ -1279,8 +1290,117 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
               </span>
             </div>
 
-            {/* Always visible heading */}
-            <div className="text-left leading-tight mb-0">
+            {/* Always visible heading - hidden when card is selected */}
+            <div 
+              className={`leading-tight text-left transition-all duration-700 mb-0 flex flex-col ${
+                selectedCardIndex !== null ? 'opacity-0 max-h-0 overflow-hidden' : 'opacity-100'
+              }`}
+            >
+                {clickToExpand ? (
+                  <>
+                    {/* Go Back Button - visible when expanded and no card selected */}
+                    {expandedSide === 'cosmetology' && selectedCardIndex === null && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          setExpandedSide(null);
+                          setHoveredSide(null);
+                        }}
+                        className="group inline-flex items-center gap-2 mb-3 md:mb-4 transition-colors self-start"
+                        style={{ 
+                          fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                          fontWeight: 500,
+                          color: '#ffffff',
+                          fontSize: '0.875rem',
+                          textDecoration: 'none',
+                          backgroundColor: 'transparent',
+                          border: 'none',
+                          cursor: 'pointer',
+                          padding: 0,
+                          textShadow: '0 2px 6px rgba(0,0,0,0.5)'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = '#f7c7db';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = '#ffffff';
+                        }}
+                      >
+                        <svg 
+                          className="w-4 h-4 transition-transform group-hover:-translate-x-1" 
+                          viewBox="0 0 24 24" 
+                          fill="none" 
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        <span>Zpět</span>
+                      </button>
+                    )}
+                    
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (selectedCardIndex !== null) {
+                          // If a card is selected, just deselect it
+                          setSelectedCardIndex(null);
+                        } else {
+                          // Otherwise, toggle the expanded state
+                          setExpandedSide(expandedSide === 'cosmetology' ? null : 'cosmetology');
+                          setHoveredSide(null);
+                        }
+                      }}
+                      className="group flex flex-col items-start gap-0 cursor-pointer arrow-float-parent self-start"
+                    >
+                      {expandedSide !== 'cosmetology' && (
+                        <h2 
+                          className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-0 text-shadow drop-shadow-xl whitespace-nowrap"
+                          style={{ 
+                            fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                            fontWeight: 600,
+                            color: '#ffffff',
+                            lineHeight: '1.1',
+                            ['--ts-y' as any]: '2px',
+                            ['--ts-blur' as any]: '10px',
+                            ['--ts-color' as any]: 'rgba(0,0,0,0.6)'
+                          }}
+                        >
+                          Objevte
+                        </h2>
+                      )}
+                      <span 
+                        className={`font-semibold border-b-3 border-accent text-accent text-shadow drop-shadow-xl transition-all duration-700 whitespace-nowrap inline-flex items-center gap-2 ${
+                          expandedSide === 'cosmetology' 
+                            ? 'text-5xl md:text-6xl lg:text-7xl -mt-1' 
+                            : 'text-3xl md:text-4xl lg:text-5xl -mt-1'
+                        }`}
+                        style={{ 
+                          fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                          fontWeight: 600,
+                          paddingBottom: '2px',
+                          lineHeight: '1.1',
+                          ['--ts-y' as any]: '2px',
+                          ['--ts-blur' as any]: '10px',
+                          ['--ts-color' as any]: 'rgba(0,0,0,0.6)'
+                        }}
+                      >
+                        {expandedSide === 'cosmetology' ? 'Kosmetologie' : 'kosmetologii'}
+                        {expandedSide !== 'cosmetology' && selectedCardIndex === null && (
+                          <svg 
+                            className="w-7 h-7 md:w-8 md:h-8 text-accent arrow-float-hover drop-shadow-lg" 
+                            viewBox="0 0 24 24" 
+                            fill="none" 
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        )}
+                      </span>
+                    </button>
+                  </>
+                ) : (
+                <>
               <h2 
                 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-0 text-shadow drop-shadow-xl whitespace-nowrap"
                 style={{ 
@@ -1297,7 +1417,8 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
               </h2>
               <Link 
                 href="/sluzby#kosmetologie"
-                className="group inline-flex items-center gap-2 whitespace-nowrap -mt-1 arrow-float-parent"
+                className="group inline-flex items-center gap-2 whitespace-nowrap -mt-1 arrow-float-parent no-underline"
+                style={{ textDecoration: 'none' }}
               >
                 <span 
                   className="text-3xl md:text-4xl lg:text-5xl font-semibold text-accent text-shadow drop-shadow-xl"
@@ -1308,7 +1429,8 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
                     lineHeight: '1.1',
                     ['--ts-y' as any]: '2px',
                     ['--ts-blur' as any]: '10px',
-                    ['--ts-color' as any]: 'rgba(0,0,0,0.6)'
+                    ['--ts-color' as any]: 'rgba(0,0,0,0.6)',
+                    textDecoration: 'none'
                   }}
                 >
                   kosmetologii
@@ -1322,6 +1444,8 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
                   <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </Link>
+                </>
+              )}
             </div>
 
             {/* Expanded content - visible on hover or click */}
@@ -1334,31 +1458,706 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
                   : 'opacity-0 max-h-0 overflow-hidden'
               }`}
             >
+              {/* Subheading - hidden when card is selected */}
               <p 
-                className="text-base md:text-lg text-white text-left mb-1 text-shadow drop-shadow-lg"
+                className={`text-white mb-1 text-left text-shadow drop-shadow-lg ${
+                  expandedSide === 'cosmetology' 
+                    ? 'text-base md:text-lg' 
+                    : 'text-base md:text-lg'
+                } ${
+                  selectedCardIndex !== null ? 'opacity-0 max-h-0 overflow-hidden mb-0' : ''
+                }`}
                 style={{ 
                   fontFamily: 'var(--font-daikon), system-ui, sans-serif',
                   fontWeight: 500,
                   lineHeight: '1.5',
-                  minWidth: '500px',
+                  minWidth: expandedSide === 'cosmetology' ? 'auto' : '500px',
                   ['--ts-y' as any]: '2px',
                   ['--ts-blur' as any]: '6px',
                   ['--ts-color' as any]: 'rgba(0,0,0,0.5)',
-                  opacity: (hoveredSide === 'cosmetology' || expandedSide === 'cosmetology')
+                  opacity: (hoveredSide === 'cosmetology' || expandedSide === 'cosmetology') && selectedCardIndex === null 
                     ? (expandedSide === 'cosmetology' ? 1 : (hoveredSide === 'cosmetology' ? 1 : 0))
                     : 0,
-                  transform: (hoveredSide === 'cosmetology' || expandedSide === 'cosmetology')
+                  transform: (hoveredSide === 'cosmetology' || expandedSide === 'cosmetology') && selectedCardIndex === null
                     ? 'translateY(0)'
                     : 'translateY(-10px)',
                   transition: 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s'
                 }}
               >
-                Profesionální kosmetické služby pro vaši přirozenou krásu.
+                Profesionální kosmetické služby pro vaši přirozenou krásu. O péči se stará lékařka-kosmetoložka s medicínským vzděláním – nový směr služeb, který kombinuje odbornost s estetikou.
               </p>
 
-              {/* Services List */}
-              <div 
-                className="flex flex-col gap-1 items-start mt-6 md:mt-8"
+              {/* Service Cards - visible when expanded */}
+              {expandedSide === 'cosmetology' && (
+                <div className={`w-full ${selectedCardIndex !== null ? 'mt-0' : 'mt-6 md:mt-8'}`}>
+                  {selectedCardIndex !== null ? (
+                    // Single card view when selected
+                    <div className="w-full">
+                      {[
+                        {
+                          title: 'Elektro epilace',
+                          description: 'Trvalé odstranění nežádoucích chloupků pomocí elektrického proudu',
+                          href: '/sluzby#elektro-epilace',
+                          categories: [
+                            {
+                              title: 'Postup zákroku',
+                              items: ['Konzultace', 'Výběr vhodné metody', 'Postupné ošetření']
+                            },
+                            {
+                              title: 'Výhody',
+                              items: ['Trvalé výsledky', 'Šetrné k pokožce', 'Vhodné pro všechny typy kůže']
+                            },
+                            {
+                              title: 'Oblast ošetření',
+                              items: ['Obličej', 'Tělo', 'Intimní oblasti']
+                            },
+                            {
+                              title: 'Délka léčby',
+                              items: ['Pravidelné sezení', 'Individuální plán', 'Dlouhodobé výsledky']
+                            }
+                          ]
+                        },
+                        {
+                          title: 'Mikrojehličkování',
+                          description: 'Stimulace kolagenu pomocí mikrojehliček pro mladší vzhled pokožky',
+                          href: '/sluzby#mikrojehlickovani',
+                          categories: [
+                            {
+                              title: 'Postup zákroku',
+                              items: ['Konzultace', 'Příprava pokožky', 'Mikrojehličkování']
+                            },
+                            {
+                              title: 'Výhody',
+                              items: ['Stimulace kolagenu', 'Redukce vrásek', 'Zlepšení textury pokožky']
+                            },
+                            {
+                              title: 'Oblast ošetření',
+                              items: ['Obličej', 'Dekoltu', 'Ruce']
+                            },
+                            {
+                              title: 'Délka léčby',
+                              items: ['Série ošetření', 'Doporučený interval', 'Viditelné výsledky']
+                            }
+                          ]
+                        },
+                        {
+                          title: 'Chemický peeling',
+                          description: 'Hloubkové očištění a omlazení pokožky pomocí chemických látek',
+                          href: '/sluzby#chemicky-peeling',
+                          categories: [
+                            {
+                              title: 'Postup zákroku',
+                              items: ['Konzultace', 'Analýza pokožky', 'Aplikace peelingu']
+                            },
+                            {
+                              title: 'Výhody',
+                              items: ['Omlazení pokožky', 'Redukce pigmentace', 'Vyhlazení textury']
+                            },
+                            {
+                              title: 'Typ peelingu',
+                              items: ['Povrchový', 'Střední', 'Hluboký']
+                            },
+                            {
+                              title: 'Péče po zákroku',
+                              items: ['Ochrana před sluncem', 'Hydratace', 'Doporučená péče']
+                            }
+                          ]
+                        },
+                        {
+                          title: 'Mezoterapie',
+                          description: 'Intradermální aplikace aktivních látek pro regeneraci pokožky',
+                          href: '/sluzby#mezoterapie',
+                          categories: [
+                            {
+                              title: 'Postup zákroku',
+                              items: ['Konzultace', 'Výběr koktejlu', 'Aplikace injekcí']
+                            },
+                            {
+                              title: 'Výhody',
+                              items: ['Intenzivní hydratace', 'Vyživení pokožky', 'Anti-age efekt']
+                            },
+                            {
+                              title: 'Oblast ošetření',
+                              items: ['Obličej', 'Dekoltu', 'Vlasy (vlasová)']
+                            },
+                            {
+                              title: 'Délka léčby',
+                              items: ['Série ošetření', 'Optimalní frekvence', 'Udržovací péče']
+                            }
+                          ]
+                        }
+                      ].filter((_, idx) => idx === selectedCardIndex).map((card, _) => {
+                        const cardIndex = selectedCardIndex!;
+                        return (
+                          <div
+                            key={cardIndex}
+                            className="relative rounded-2xl overflow-hidden group w-full"
+                  style={{
+                    minHeight: '500px',
+                    background: 'linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.24) 100%)',
+                    backdropFilter: 'blur(16px) saturate(120%)',
+                    WebkitBackdropFilter: 'blur(16px) saturate(120%)',
+                    border: '1px solid rgba(255,255,255,0.35)',
+                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.5), 0 8px 20px rgba(17,34,80,0.1), 0 2px 6px rgba(17,34,80,0.06)',
+                    animation: 'fadeIn 0.4s ease-out',
+                  }}
+                          >
+                          {/* Heart SVG Background */}
+                          <div 
+                            className="absolute inset-0 pointer-events-none"
+                            style={{
+                              backgroundImage: 'url(/service-heart.svg)',
+                              backgroundSize: 'cover',
+                              backgroundPosition: 'center',
+                              backgroundRepeat: 'no-repeat',
+                              opacity: 0.5,
+                              filter: 'brightness(0) invert(1)',
+                              WebkitFilter: 'brightness(0) invert(1)',
+                            }}
+                          />
+                          
+                          {/* Content */}
+                          <div 
+                            className="relative flex flex-col justify-start z-10"
+                            style={{
+                              padding: '2rem',
+                              minHeight: 0,
+                              overflow: 'hidden',
+                            }}
+                          >
+                            <div className="flex flex-col items-start w-full">
+                              {/* Go Back Button */}
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (selectedSubcategoryIndex !== null) {
+                                    // If viewing subcategory detail, go back to categories
+                                    setSelectedSubcategoryIndex(null);
+                                  } else {
+                                    // Otherwise go back to grid
+                                    setSelectedCardIndex(null);
+                                  }
+                                }}
+                                className="inline-flex items-center gap-2 font-medium text-dark transition-all duration-300 hover:gap-1.5 mb-4 w-fit"
+                                style={{ 
+                                  fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                  fontWeight: 500,
+                                  color: 'var(--color-dark)',
+                                  fontSize: '0.875rem',
+                                  lineHeight: '1.2',
+                                  backgroundColor: 'transparent',
+                                  border: 'none',
+                                  cursor: 'pointer',
+                                  padding: 0,
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.opacity = '0.8';
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.opacity = '1';
+                                }}
+                              >
+                                <svg 
+                                  className="w-4 h-4" 
+                                  viewBox="0 0 24 24" 
+                                  fill="none" 
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  style={{ color: 'var(--color-accent)' }}
+                                >
+                                  <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                                <span>Zpět</span>
+                              </button>
+                              
+                              {selectedSubcategoryIndex === null ? (
+                                <>
+                              {/* Title */}
+                              <h3 
+                                className="font-semibold mb-1.5 text-dark leading-tight"
+                                style={{ 
+                                  fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                  fontWeight: 600,
+                                  color: 'var(--color-dark)',
+                                  fontSize: '1.75rem',
+                                  lineHeight: '1.1'
+                                }}
+                              >
+                                {card.title}
+                              </h3>
+                              {/* Subtitle */}
+                              <p 
+                                className="text-sm text-dark/80 leading-snug mb-6"
+                                style={{ 
+                                  fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                  fontWeight: 500,
+                                  color: 'var(--color-text-secondary)',
+                                  fontSize: '1rem',
+                                  lineHeight: '1.2'
+                                }}
+                              >
+                                {card.description}
+                              </p>
+                              
+                              {/* Categories - 2 columns with aligned buttons */}
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 w-full">
+                                {card.categories.map((category, catIndex) => (
+                                  <div key={catIndex} className="flex flex-col items-start">
+                                    {/* Category Title */}
+                                    <div className="w-full mb-2">
+                                      <div className="flex items-center gap-2">
+                                        <h4
+                                          className="font-medium text-dark"
+                                          style={{ 
+                                            fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                            fontWeight: 500,
+                                            color: 'var(--color-dark)',
+                                            fontSize: '1.5rem',
+                                            lineHeight: '1.2',
+                                          }}
+                                        >
+                                          {category.title}
+                                        </h4>
+                                        <svg 
+                                          className="w-4 h-4" 
+                                          viewBox="0 0 24 24" 
+                                          fill="none" 
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          style={{ color: 'var(--color-accent)' }}
+                                        >
+                                          <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
+                                        </svg>
+                                      </div>
+                                    </div>
+                                    
+                                    {/* Content area: bullets + button with fixed spacing from title */}
+                                    <div className="flex flex-col w-full" style={{ height: '7rem' }}>
+                                      {/* Bullet Points - horizontal flow with wrapping */}
+                                      <ul className="flex flex-row flex-wrap gap-x-4 gap-y-1.5 mb-2 items-start" style={{ alignContent: 'flex-start' }}>
+                                        {category.items.map((item, itemIndex) => (
+                                          <li 
+                                            key={itemIndex}
+                                            className="flex items-center"
+                                            style={{
+                                              fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                              fontWeight: 500,
+                                              color: 'var(--color-text-secondary)',
+                                              fontSize: '0.875rem',
+                                              lineHeight: '1.4'
+                                            }}
+                                          >
+                                            <span
+                                              className="w-1.5 h-1.5 rounded-full mr-1.5 flex-shrink-0"
+                                              style={{
+                                                backgroundColor: 'var(--color-accent)'
+                                              }}
+                                            />
+                                            <span className="whitespace-nowrap">{item}</span>
+                                          </li>
+                                        ))}
+                                      </ul>
+                                      
+                                      {/* CTA Buttons - always at bottom of fixed-height container */}
+                                      <div className="flex items-center gap-3 mt-auto">
+                                        <button
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            // Navigate to booking or service page
+                                            window.location.href = '/objednat';
+                                          }}
+                                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm transition-all duration-300 hover:gap-2.5 w-fit"
+                                          style={{
+                                            backgroundColor: 'var(--color-accent)',
+                                            color: 'var(--color-text-white)',
+                                            fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                            fontWeight: 600,
+                                            border: 'none',
+                                            cursor: 'pointer',
+                                          }}
+                                          onMouseEnter={(e) => {
+                                            e.currentTarget.style.backgroundColor = '#e6a0c0';
+                                            e.currentTarget.style.transform = 'translateY(-1px)';
+                                            e.currentTarget.style.boxShadow = '0 4px 12px rgba(247, 199, 219, 0.4)';
+                                          }}
+                                          onMouseLeave={(e) => {
+                                            e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+                                            e.currentTarget.style.transform = 'translateY(0)';
+                                            e.currentTarget.style.boxShadow = 'none';
+                                          }}
+                                        >
+                                          <span>Objednat se</span>
+                                          <svg 
+                                            className="w-4 h-4" 
+                                            viewBox="0 0 24 24" 
+                                            fill="none" 
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            style={{ color: 'var(--color-dark)' }}
+                                          >
+                                            <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
+                                          </svg>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                                </>
+                              ) : (
+                                // Subcategory Detail View
+                                <>
+                                  {/* Title - Subcategory name */}
+                                  <h3 
+                                    className="font-semibold mb-1.5 text-dark leading-tight"
+                                    style={{ 
+                                      fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                      fontWeight: 600,
+                                      color: 'var(--color-dark)',
+                                      fontSize: '1.75rem',
+                                      lineHeight: '1.1'
+                                    }}
+                                  >
+                                    {card.categories[selectedSubcategoryIndex].title}
+                                  </h3>
+                                  
+                                  {/* Subtitle - Service subheading */}
+                                  <p 
+                                    className="text-base text-dark/80 leading-snug"
+                                    style={{ 
+                                      fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                      fontWeight: 500,
+                                      color: 'var(--color-text-secondary)',
+                                      fontSize: '1rem',
+                                      lineHeight: '1.4'
+                                    }}
+                                  >
+                                    Detailní informace o kosmetickém ošetření
+                                  </p>
+                                  
+                                  {/* Vertically Centered Content Wrapper */}
+                                  <div className="flex-1 flex flex-col justify-center my-8">
+                                    {/* Detail Content - 3 column grid */}
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                      {[
+                                        {
+                                          icon: '/icons/ambulantni-gynekologie.svg',
+                                          title: 'Co zákrok obnáší',
+                                          description: 'Komplexní kosmetické ošetření prováděné zkušenými odborníky s využitím nejmodernějších technologií a přípravků. Každý zákrok začíná konzultací a analýzou vaší pokožky.'
+                                        },
+                                        {
+                                          icon: '/icons/doctorr.svg',
+                                          title: 'Komu je určené',
+                                          description: 'Všem, kteří chtějí zlepšit vzhled a stav své pokožky. Ideální pro osoby s prvními známkami stárnutí, pigmentací nebo nepravidelnostmi textury pokožky.'
+                                        },
+                                        {
+                                          icon: '/icons/starr.svg',
+                                          title: 'Jaké jsou výsledky',
+                                          description: 'Viditelné zlepšení vzhledu pokožky již po prvním ošetření. Pravidelná péče přináší dlouhodobé výsledky v podobě mladší, zdravější a zářivější pokožky.'
+                                        }
+                                      ].map((section, idx) => (
+                                        <div key={idx} className="flex flex-col">
+                                          {/* Icon */}
+                                          <div className="mb-3">
+                                            <span
+                                              aria-hidden="true"
+                                              className="block w-10 h-10"
+                                              style={{
+                                                backgroundColor: 'var(--color-accent)',
+                                                WebkitMaskImage: `url(${section.icon})`,
+                                                maskImage: `url(${section.icon})`,
+                                                WebkitMaskRepeat: 'no-repeat',
+                                                maskRepeat: 'no-repeat',
+                                                WebkitMaskPosition: 'center',
+                                                maskPosition: 'center',
+                                                WebkitMaskSize: 'contain',
+                                                maskSize: 'contain',
+                                              }}
+                                            />
+                                          </div>
+
+                                          {/* Title */}
+                                          <h4 
+                                            className="text-lg font-semibold mb-2 text-dark"
+                                            style={{ 
+                                              fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                              fontWeight: 600,
+                                              color: 'var(--color-dark)'
+                                            }}
+                                          >
+                                            {section.title}
+                                          </h4>
+
+                                          {/* Description */}
+                                          <p 
+                                            className="text-sm leading-relaxed"
+                                            style={{ 
+                                              fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                              fontWeight: 500,
+                                              lineHeight: '1.6',
+                                              color: 'var(--color-text-secondary)'
+                                            }}
+                                          >
+                                            {section.description}
+                                          </p>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  
+                                  {/* CTA Buttons */}
+                                  <div className="flex items-center gap-4">
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        window.location.href = '/objednat';
+                                      }}
+                                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-base transition-all duration-300 hover:gap-2.5"
+                                      style={{
+                                        backgroundColor: 'var(--color-accent)',
+                                        color: '#ffffff',
+                                        fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                        fontWeight: 600,
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                      }}
+                                      onMouseEnter={(e) => {
+                                        e.currentTarget.style.backgroundColor = '#e6a0c0';
+                                        e.currentTarget.style.transform = 'translateY(-1px)';
+                                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(247, 199, 219, 0.4)';
+                                      }}
+                                      onMouseLeave={(e) => {
+                                        e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                        e.currentTarget.style.boxShadow = 'none';
+                                      }}
+                                    >
+                                      <span>Objednat se</span>
+                                      <svg 
+                                        className="w-4 h-4" 
+                                        viewBox="0 0 24 24" 
+                                        fill="none" 
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
+                                      </svg>
+                                    </button>
+                                    
+                                    {/* Secondary CTA */}
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        window.location.href = '/kontakt';
+                                      }}
+                                      className="inline-flex items-center gap-1 group transition-all duration-300"
+                                      style={{
+                                        fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                        fontWeight: 500,
+                                        fontSize: '1rem',
+                                        color: 'var(--color-dark)',
+                                        backgroundColor: 'transparent',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        padding: 0,
+                                      }}
+                                    >
+                                      <span>Kontaktujte nás</span>
+                                      <svg 
+                                        className="w-4 h-4 transition-transform group-hover:translate-x-0.5" 
+                                        viewBox="0 0 24 24" 
+                                        fill="none" 
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
+                                      </svg>
+                                    </button>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    // Grid view when no card is selected
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                      {[
+                        {
+                          title: 'Elektro epilace',
+                          description: 'Trvalé odstranění nežádoucích chloupků pomocí elektrického proudu',
+                          href: '/sluzby#elektro-epilace'
+                        },
+                        {
+                          title: 'Mikrojehličkování',
+                          description: 'Stimulace kolagenu pomocí mikrojehliček pro mladší vzhled pokožky',
+                          href: '/sluzby#mikrojehlickovani'
+                        },
+                        {
+                          title: 'Chemický peeling',
+                          description: 'Hloubkové očištění a omlazení pokožky pomocí chemických látek',
+                          href: '/sluzby#chemicky-peeling'
+                        },
+                        {
+                          title: 'Mezoterapie',
+                          description: 'Intradermální aplikace aktivních látek pro regeneraci pokožky',
+                          href: '/sluzby#mezoterapie'
+                        }
+                      ].map((card, index) => (
+                      <div
+                        key={index}
+                        className="relative rounded-2xl overflow-hidden group"
+                        style={{
+                          aspectRatio: '8/5',
+                          background: 'linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.24) 100%)',
+                          backdropFilter: 'blur(16px) saturate(120%)',
+                          WebkitBackdropFilter: 'blur(16px) saturate(120%)',
+                          border: '1px solid rgba(255,255,255,0.35)',
+                          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.5), 0 8px 20px rgba(17,34,80,0.1), 0 2px 6px rgba(17,34,80,0.06)',
+                          cursor: 'pointer',
+                          transition: 'transform 0.3s ease',
+                        }}
+                        onClick={() => setSelectedCardIndex(index)}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = 'scale(1.02)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = 'scale(1)';
+                        }}
+                      >
+                      {/* Heart SVG Background */}
+                      <div 
+                        className="absolute inset-0 pointer-events-none"
+                        style={{
+                          backgroundImage: 'url(/service-heart.svg)',
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          backgroundRepeat: 'no-repeat',
+                          opacity: 0.5,
+                          filter: 'brightness(0) invert(1)',
+                          WebkitFilter: 'brightness(0) invert(1)',
+                        }}
+                      />
+                      
+                      {/* Content - centered vertically with consistent alignment */}
+                      <div 
+                        className="relative h-full z-10 flex flex-col justify-center"
+                        style={{
+                          padding: '1rem',
+                        }}
+                      >
+                        {/* Content wrapper - fixed structure to maintain cross-card alignment */}
+                        <div 
+                          className="w-full flex flex-col"
+                          style={{
+                            // Fixed total height ensures titles, subheadings, and buttons align across cards
+                            // while the wrapper itself is centered vertically
+                          }}
+                        >
+                          {/* Title section - fixed height to align subheadings across all cards */}
+                          <div 
+                            className="w-full"
+                            style={{
+                              height: '3.5rem', // Fixed height for 2 lines - ensures all subheadings start at same level
+                              display: 'flex',
+                              alignItems: 'flex-start',
+                            }}
+                          >
+                            <h3 
+                              className="font-semibold text-dark"
+                              style={{ 
+                                fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                fontWeight: 600,
+                                color: 'var(--color-dark)',
+                                fontSize: '1.2rem',
+                                lineHeight: '1.15', // Tighter line height
+                                margin: '0',
+                                padding: '0',
+                                marginBottom: '0',
+                              }}
+                            >
+                              {card.title}
+                            </h3>
+                          </div>
+                          
+                          {/* Description section - aligned across all cards, very close to title */}
+                          <div 
+                            className="w-full"
+                            style={{
+                              marginTop: '-0.4rem', // Negative margin to pull description closer to title
+                              minHeight: '2.5rem',
+                            }}
+                          >
+                            <p 
+                              className="text-xs text-dark/80"
+                              style={{ 
+                                fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                                fontWeight: 500,
+                                color: 'var(--color-text-secondary)',
+                                lineHeight: '1.35', // Slightly tighter line height
+                                margin: '0',
+                                padding: '0',
+                              }}
+                            >
+                              {card.description}
+                            </p>
+                          </div>
+                          
+                          {/* Button section - closer to subheading */}
+                          <div 
+                            className="w-full flex items-start"
+                            style={{
+                              marginTop: '0.25rem', // Closer spacing between subheading and button
+                            }}
+                          >
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedCardIndex(index);
+                            }}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-semibold text-xs transition-all duration-300 hover:gap-2 w-fit"
+                            style={{
+                              backgroundColor: 'var(--color-accent)',
+                              color: 'var(--color-text-white)',
+                              fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                              fontWeight: 600,
+                              border: 'none',
+                              cursor: 'pointer',
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.backgroundColor = '#e6a0c0';
+                              e.currentTarget.style.transform = 'translateY(-1px)';
+                              e.currentTarget.style.boxShadow = '0 4px 12px rgba(247, 199, 219, 0.4)';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+                              e.currentTarget.style.transform = 'translateY(0)';
+                              e.currentTarget.style.boxShadow = 'none';
+                            }}
+                          >
+                            <span>Prozkoumat</span>
+                            <svg 
+                              className="w-3 h-3" 
+                              viewBox="0 0 24 24" 
+                              fill="none" 
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </button>
+                        </div>
+                        </div>
+                        {/* End content wrapper */}
+                      </div>
+                    </div>
+                  ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Services List - hidden when expanded via click */}
+              {expandedSide !== 'cosmetology' && (
+                <div 
+                  className="flex flex-col gap-1 items-start mt-3 md:mt-4"
                 style={{
                   opacity: hoveredSide === 'cosmetology' ? 1 : 0,
                   transform: hoveredSide === 'cosmetology' ? 'translateY(0)' : 'translateY(-10px)',
@@ -1389,7 +2188,9 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
                     >
                       <span
                         aria-hidden="true"
-                        className="inline-block w-5 h-5 group-hover:scale-110 transition-transform duration-150 ease-out relative z-10"
+                        className={`inline-block group-hover:scale-110 transition-transform duration-150 ease-out relative z-10 ${
+                          service.label === 'Elektro epilace' ? 'w-6 h-6' : 'w-5 h-5'
+                        }`}
                         style={{
                           backgroundColor: 'var(--color-accent)',
                           WebkitMaskImage: `url(${service.icon})`,
@@ -1443,6 +2244,7 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
                   </svg>
                 </Link>
               </div>
+              )}
             </div>
           </div>
         </div>

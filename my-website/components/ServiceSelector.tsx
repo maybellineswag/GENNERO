@@ -279,6 +279,10 @@ export default function ServiceSelector({ value, onChange, required }: ServiceSe
           className="absolute z-50 w-full mt-2 bg-white rounded-lg border border-gray-200 shadow-lg overflow-hidden"
           style={{
             boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.08)',
+            animation: 'dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+            opacity: 0,
+            transform: 'translateY(-8px) scale(0.95)',
+            animationFillMode: 'forwards',
           }}
         >
           {/* Search Bar */}
@@ -345,8 +349,14 @@ export default function ServiceSelector({ value, onChange, required }: ServiceSe
                   </button>
 
                   {/* Subcategories in Category */}
-                  {isCategoryExpanded && (
-                    <div className="bg-gray-50/30">
+                  <div 
+                    className="bg-gray-50/30 overflow-hidden transition-all duration-300 ease-out"
+                    style={{
+                      maxHeight: isCategoryExpanded ? '2000px' : '0',
+                      opacity: isCategoryExpanded ? 1 : 0,
+                      transform: isCategoryExpanded ? 'translateY(0)' : 'translateY(-4px)',
+                    }}
+                  >
                       {category.subcategories.map((subcategory) => {
                         // Auto-expand all subcategories when searching
                         // When not searching: expand by default, unless user explicitly collapsed it
@@ -400,8 +410,15 @@ export default function ServiceSelector({ value, onChange, required }: ServiceSe
                             )}
 
                             {/* Services in Subcategory */}
-                            {isSubcategoryExpanded && hasServices && (
-                              <div className="bg-white">
+                            {hasServices && (
+                              <div 
+                                className="bg-white overflow-hidden transition-all duration-300 ease-out"
+                                style={{
+                                  maxHeight: isSubcategoryExpanded ? '2000px' : '0',
+                                  opacity: isSubcategoryExpanded ? 1 : 0,
+                                  transform: isSubcategoryExpanded ? 'translateY(0)' : 'translateY(-4px)',
+                                }}
+                              >
                                 {subcategory.services.map((service) => {
                                   const isSelected = service.id === value;
                                   return (
@@ -442,7 +459,6 @@ export default function ServiceSelector({ value, onChange, required }: ServiceSe
                         );
                       })}
                     </div>
-                  )}
                 </div>
               );
             })}

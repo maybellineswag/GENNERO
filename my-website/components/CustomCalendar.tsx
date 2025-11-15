@@ -73,9 +73,10 @@ export default function CustomCalendar({ value, onChange, minDate, onClose }: Cu
   const handleDateSelect = (day: number) => {
     const newDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
     if (!isDateDisabled(newDate)) {
-      setSelectedDate(newDate);
       const dateString = newDate.toISOString().split('T')[0];
       onChange(dateString);
+      setSelectedDate(newDate);
+      // Close immediately after selection, similar to service selector
       onClose();
     }
   };
@@ -116,11 +117,14 @@ export default function CustomCalendar({ value, onChange, minDate, onClose }: Cu
   return (
     <div
       ref={calendarRef}
-      className="absolute z-50 mt-2 bg-white rounded-lg border border-gray-200 shadow-xl overflow-hidden animate-in fade-in-0 zoom-in-95 duration-200"
+      className="absolute z-50 mt-2 bg-white rounded-lg border border-gray-200 shadow-xl overflow-hidden"
       style={{
         boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1)',
         minWidth: '320px',
-        animation: 'fadeIn 0.2s ease-out',
+        animation: 'dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+        opacity: 0,
+        transform: 'translateY(-8px) scale(0.95)',
+        animationFillMode: 'forwards',
       }}
     >
       {/* Header */}
