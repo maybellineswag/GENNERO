@@ -570,9 +570,14 @@ export default function Navbar() {
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
                               </button>
-                              {isDropdownOpen && menuContent && (
-                                <div className="ml-4 mt-2 space-y-4">
-                                  {menuContent.groups.map((group) => (
+                              <div 
+                                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                                  isDropdownOpen ? 'max-h-[2000px] opacity-100 translate-y-0' : 'max-h-0 opacity-0 -translate-y-2'
+                                }`}
+                              >
+                                {menuContent && (
+                                  <div className="ml-4 mt-2 space-y-4 transform transition-transform duration-300">
+                                    {menuContent.groups.map((group) => (
                                     <div key={group.title} className="flex flex-col gap-2">
                                       {group.href ? (
                                         <Link 
@@ -633,8 +638,9 @@ export default function Navbar() {
                                       </ul>
                                     </div>
                                   ))}
-                                </div>
-                              )}
+                                  </div>
+                                )}
+                              </div>
                             </>
                           ) : (
                             <Link

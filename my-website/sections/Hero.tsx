@@ -40,11 +40,12 @@ export default function Hero() {
         {/* Centered text content */}
         <div className="flex-1 flex flex-col items-start md:items-center justify-start md:justify-center text-left md:text-center px-4 md:px-8 pt-16 md:pt-12 lg:pt-32">
           <h1
-            className="text-[2rem] md:text-6xl lg:text-7xl xl:text-8xl font-semibold !text-white leading-[1.15] md:leading-tight mb-2 md:mb-3 md:whitespace-nowrap mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-soft px-0 md:px-4 w-full md:w-auto"
+            className="text-[2rem] md:text-6xl lg:text-7xl xl:text-8xl font-semibold !text-white mb-2 md:mb-3 md:whitespace-nowrap mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-soft px-0 md:px-4 w-full md:w-auto md:leading-tight"
             style={{ 
               color: '#ffffff', 
               fontWeight: 600,
               fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+              lineHeight: '1',
               // Individual tuning for the heading shadow
               ['--ts-y' as any]: '1px',
               ['--ts-blur' as any]: '4px',
@@ -114,36 +115,36 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 md:gap-6 mb-7 md:mb-9 justify-start md:justify-center items-start md:items-center scale-85"
+            className="flex flex-row gap-3 md:gap-6 mb-7 md:mb-9 justify-start md:justify-center items-start md:items-center"
           >
             <Link
               href="/sluzby"
-              className="btn btn-secondary text-center px-4 md:px-5 py-2 md:py-2.5 text-sm md:text-base font-semibold arrow-float-parent"
+              className="btn btn-secondary hero-cta-btn text-center font-semibold arrow-float-parent"
               style={{ 
                 fontWeight: 600,
                 fontFamily: 'var(--font-daikon), system-ui, sans-serif'
               }}
             >
               <span className="inline-flex items-center gap-1">
-                <span className="text-xl md:text-2xl leading-none">Naše služby</span>
+                <span className="text-base md:text-2xl leading-none">Naše služby</span>
                 {/* Baby blue arrow */}
-                <svg className="w-6 h-6 md:w-7 md:h-7 text-primary arrow-float-hover" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <svg className="w-4 h-4 md:w-7 md:h-7 text-primary arrow-float-hover" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </span>
             </Link>
             <Link
               href="/objednat"
-              className="btn btn-primary text-center px-4 md:px-5 py-2 md:py-2.5 text-sm md:text-base font-semibold arrow-float-parent"
+              className="btn btn-primary hero-cta-btn text-center font-semibold arrow-float-parent"
               style={{ 
                 fontWeight: 600,
                 fontFamily: 'var(--font-daikon), system-ui, sans-serif'
               }}
             >
               <span className="inline-flex items-center gap-1">
-                <span className="text-xl md:text-2xl leading-none">Objednat online</span>
+                <span className="text-base md:text-2xl leading-none">Objednat online</span>
                 {/* Dark blue arrow */}
-                <svg className="w-6 h-6 md:w-7 md:h-7 text-dark arrow-float-hover" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <svg className="w-4 h-4 md:w-7 md:h-7 text-dark arrow-float-hover" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </span>

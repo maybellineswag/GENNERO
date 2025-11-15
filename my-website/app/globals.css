@@ -489,6 +489,13 @@ button:hover > .arrow-float-hover {
     font-size: var(--font-size-sm);
   }
   
+  .hero-cta-btn {
+    padding-top: 1.125rem !important;
+    padding-bottom: 1.125rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  
   .liquid-glass-popup {
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--font-size-sm);
