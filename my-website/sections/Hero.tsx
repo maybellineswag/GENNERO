@@ -101,7 +101,7 @@ export default function Hero() {
             }}
           >
             Moderní gynekologická a estetická klinika v{' '}
-            <span className="relative inline-block ml-1 md:ml-2">
+            <span className="relative inline-block ml-0.5 md:ml-1">
               <span
                 className="inline-block drop-shadow shrink-0 align-middle w-[0.75em] h-[0.75em] md:w-[0.75em] md:h-[0.75em] lg:w-[0.85em] lg:h-[0.85em]"
                 style={{
@@ -184,48 +184,54 @@ export default function Hero() {
           >
             <div className="flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center gap-0 md:gap-15 lg:gap-16 px-0 md:px-4">
               {/* Tým certifikovaných lékařek */}
-              <div className="relative flex items-start justify-start w-full md:w-auto py-3 md:py-0 pl-4 md:pl-0">
-                <span
-                  aria-hidden="true"
-                  className="absolute w-6 h-6 md:w-7 md:h-7 drop-shadow shrink-0 z-0 top-[0.6em] md:top-[45%] md:-translate-y-[48%]"
-                  style={{
-                    backgroundColor: 'var(--color-primary)',
-                    WebkitMaskImage: 'url(/icons/doctorr.svg)',
-                    maskImage: 'url(/icons/doctorr.svg)',
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskRepeat: 'no-repeat',
-                    WebkitMaskPosition: 'center',
-                    maskPosition: 'center',
-                    WebkitMaskSize: 'contain',
-                    maskSize: 'contain',
-                    left: '-12px'
-                  }}
-                />
-                <span className="relative z-10 text-white text-sm md:text-lg font-medium text-shadow text-shadow-subtle ml-3 md:ml-0">Tým certifikovaných lékařek</span>
+              <div className="flex items-center justify-start w-full md:w-auto py-3 md:py-0 pl-4 md:pl-0">
+                <span className="relative inline-flex items-center gap-1.5 md:gap-2">
+                  <span
+                    className="inline-block drop-shadow shrink-0 align-middle w-[1em] h-[1em] md:w-[1.1em] md:h-[1.1em]"
+                    style={{
+                      backgroundColor: 'var(--color-primary)',
+                      WebkitMaskImage: 'url(/icons/doctorr.svg)',
+                      maskImage: 'url(/icons/doctorr.svg)',
+                      WebkitMaskRepeat: 'no-repeat',
+                      maskRepeat: 'no-repeat',
+                      WebkitMaskPosition: 'center',
+                      maskPosition: 'center',
+                      WebkitMaskSize: 'contain',
+                      maskSize: 'contain',
+                      transform: 'translateY(0.1em)',
+                      position: 'relative'
+                    }}
+                    aria-hidden="true"
+                  />
+                  <span className="text-white text-sm md:text-lg font-medium text-shadow text-shadow-subtle">Tým certifikovaných lékařek</span>
+                </span>
               </div>
 
               {/* Divider line - Mobile only */}
               <div className="w-full md:hidden h-px bg-gradient-to-r from-transparent via-white/70 to-transparent"></div>
 
               {/* Doporučeno desítkami spokojených pacientek */}
-              <div className="relative flex items-start justify-start w-full md:w-auto py-3 md:py-0 pl-4 md:pl-0">
-                <span
-                  aria-hidden="true"
-                  className="absolute w-6 h-6 md:w-7 md:h-7 drop-shadow shrink-0 z-0 top-[0.6em] md:top-[45%] md:-translate-y-[48%]"
-                  style={{
-                    backgroundColor: 'var(--color-primary)',
-                    WebkitMaskImage: 'url(/icons/starr.svg)',
-                    maskImage: 'url(/icons/starr.svg)',
-                    WebkitMaskRepeat: 'no-repeat',
-                    maskRepeat: 'no-repeat',
-                    WebkitMaskPosition: 'center',
-                    maskPosition: 'center',
-                    WebkitMaskSize: 'contain',
-                    maskSize: 'contain',
-                    left: '-12px'
-                  }}
-                />
-                <span className="relative z-10 text-white text-sm md:text-lg font-medium text-shadow text-shadow-subtle ml-3 md:ml-0">Doporučeno desítkami spokojených pacientek</span>
+              <div className="flex items-center justify-start w-full md:w-auto py-3 md:py-0 pl-4 md:pl-0">
+                <span className="relative inline-flex items-center gap-1.5 md:gap-2">
+                  <span
+                    className="inline-block drop-shadow shrink-0 align-middle w-[1em] h-[1em] md:w-[1.1em] md:h-[1.1em]"
+                    style={{
+                      backgroundColor: 'var(--color-primary)',
+                      WebkitMaskImage: 'url(/icons/starr.svg)',
+                      maskImage: 'url(/icons/starr.svg)',
+                      WebkitMaskRepeat: 'no-repeat',
+                      maskRepeat: 'no-repeat',
+                      WebkitMaskPosition: 'center',
+                      maskPosition: 'center',
+                      WebkitMaskSize: 'contain',
+                      maskSize: 'contain',
+                      transform: 'translateY(0.1em)',
+                      position: 'relative'
+                    }}
+                    aria-hidden="true"
+                  />
+                  <span className="text-white text-sm md:text-lg font-medium text-shadow text-shadow-subtle">Doporučeno desítkami spokojených pacientek</span>
+                </span>
               </div>
 
               {/* Divider line - Mobile only */}
