@@ -40,7 +40,7 @@ export default function Hero() {
         {/* Centered text content */}
         <div className="flex-1 flex flex-col items-start md:items-center justify-start md:justify-center text-left md:text-center px-4 md:px-8 pt-16 md:pt-12 lg:pt-32">
           <h1
-            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold !text-white leading-none md:leading-tight mb-2 md:mb-3 md:whitespace-nowrap mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-soft px-0 md:px-4 w-full md:w-auto"
+            className="text-[2rem] md:text-6xl lg:text-7xl xl:text-8xl font-semibold !text-white leading-[1.15] md:leading-tight mb-2 md:mb-3 md:whitespace-nowrap mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-soft px-0 md:px-4 w-full md:w-auto"
             style={{ 
               color: '#ffffff', 
               fontWeight: 600,
@@ -67,7 +67,7 @@ export default function Hero() {
           </h1>
 
           <p
-            className="text-xl md:text-1xl lg:text-2xl text-white leading-tight mb-4 md:mb-6 max-w-4xl mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-subtle"
+            className="text-base md:text-1xl lg:text-2xl text-white leading-tight mb-4 md:mb-6 max-w-4xl mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-subtle"
             style={{ 
               fontWeight: 500,
               fontFamily: 'var(--font-daikon), system-ui, sans-serif',
@@ -78,12 +78,10 @@ export default function Hero() {
             }}
           >
             Moderní gynekologická a estetická klinika v{' '}
-            <span className="relative inline-block" style={{ marginLeft: '-6px' }}>
+            <span className="relative inline-block -ml-1 md:-ml-1.5">
               <span
-                className="inline-block drop-shadow shrink-0 align-middle"
+                className="inline-block drop-shadow shrink-0 align-middle w-[0.75em] h-[0.75em] md:w-[0.9em] md:h-[0.9em] lg:w-[1.1em] lg:h-[1.1em]"
                 style={{
-                  width: '1.1em',
-                  height: '1.1em',
                   backgroundColor: 'var(--color-primary)',
                   WebkitMaskImage: 'url(/icons/location.svg)',
                   maskImage: 'url(/icons/location.svg)',
@@ -93,8 +91,8 @@ export default function Hero() {
                   maskPosition: 'center',
                   WebkitMaskSize: 'contain',
                   maskSize: 'contain',
-                  transform: 'translateY(0.3em)',
-                  marginRight: '-8px',
+                  transform: 'translateY(0.2em)',
+                  marginRight: '-0.25em',
                   zIndex: 0,
                   position: 'relative'
                 }}
@@ -102,13 +100,10 @@ export default function Hero() {
               />
               <Link 
                 href="/kontakt#jak-nas-najdete"
+                className="hover:text-primary cursor-pointer -ml-1 md:-ml-2 relative z-10"
                 style={{ 
-                  marginLeft: '-8px', 
-                  position: 'relative', 
-                  zIndex: 1,
                   transition: 'color 0.2s ease-in-out'
                 }}
-                className="hover:text-primary cursor-pointer"
               >
                 Teplicích.
               </Link>
