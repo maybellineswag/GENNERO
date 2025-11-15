@@ -38,9 +38,9 @@ export default function Hero() {
         <div className="h-14 md:h-16"></div>
 
         {/* Centered text content */}
-        <div className="flex-1 flex flex-col items-center justify-center text-center px-4 md:px-8 pt-8 md:pt-12 lg:pt-32">
+        <div className="flex-1 flex flex-col items-start md:items-center justify-start md:justify-center text-left md:text-center px-4 md:px-8 pt-16 md:pt-12 lg:pt-32">
           <h1
-            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold !text-white leading-tight mb-2 md:mb-3 md:whitespace-nowrap mx-auto text-center text-shadow text-shadow-soft px-4"
+            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold !text-white leading-none md:leading-tight mb-2 md:mb-3 md:whitespace-nowrap mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-soft px-0 md:px-4 w-full md:w-auto"
             style={{ 
               color: '#ffffff', 
               fontWeight: 600,
@@ -67,7 +67,7 @@ export default function Hero() {
           </h1>
 
           <p
-            className="text-xl md:text-1xl lg:text-2xl text-white leading-tight mb-4 md:mb-6 max-w-4xl mx-auto text-center text-shadow text-shadow-subtle"
+            className="text-xl md:text-1xl lg:text-2xl text-white leading-tight mb-4 md:mb-6 max-w-4xl mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-subtle"
             style={{ 
               fontWeight: 500,
               fontFamily: 'var(--font-daikon), system-ui, sans-serif',
@@ -119,7 +119,7 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 md:gap-6 mb-7 md:mb-9 justify-center items-center scale-85"
+            className="flex flex-col sm:flex-row gap-4 md:gap-6 mb-7 md:mb-9 justify-start md:justify-center items-start md:items-center scale-85"
           >
             <Link
               href="/sluzby"
@@ -157,14 +157,14 @@ export default function Hero() {
 
           {/* Divider line with gradient fading to transparency on both sides */}
           <div className="container-responsive w-full mb-3 md:mb-4">
-            <div className="mx-auto w-11/12 md:w-3/4 h-px md:h-px bg-gradient-to-r from-transparent via-white/70 to-transparent"></div>
+            <div className="mx-0 md:mx-auto w-full md:w-3/4 h-px md:h-px bg-gradient-to-r from-transparent via-white/70 to-transparent"></div>
           </div>
 
           {/* Bottom informational snippets (inside centered content) */}
           <motion.div
             className="container-responsive pt-3 md:pt-4 overflow-x-hidden"
           >
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-15 lg:gap-16 px-4 md:px-0">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center gap-6 md:gap-15 lg:gap-16 px-0 md:px-4">
               {/* Tým certifikovaných lékařek */}
               <div className="relative flex items-center pl-4 md:pl-0">
                 <span
@@ -237,7 +237,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Alert: Nově nabízíme také kosmetologii */}
-          <div className="flex items-center justify-center gap-2 mt-4 md:mt-5">
+          <div className="flex items-center justify-start md:justify-center gap-2 mt-4 md:mt-5">
             <span
               className="inline-block w-2 h-2 rounded-full shrink-0"
               style={{

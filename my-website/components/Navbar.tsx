@@ -443,99 +443,101 @@ export default function Navbar() {
                   }}
                 />
               </button>
-
-              {/* Language Dropdown - Mobile */}
-              {(isLanguageMenuOpen || isLanguageMenuClosing) && (
-                <div className={`absolute right-0 z-50 w-auto dropdown-container ${isLanguageMenuClosing ? 'dropdown-closing' : ''}`} style={{ top: '100%', marginTop: '0.5rem' }}>
-                  <div className="h-5"></div>
-                  <div className="relative">
-                    <div className="liquid-glass-apple rounded-2xl px-3 py-3 shadow-xl relative z-0">
-                      <ul className="space-y-2">
-                        <li>
-                          <button 
-                            onClick={() => {
-                              setIsLanguageMenuClosing(true);
-                              setIsLanguageMenuOpen(false);
-                            }}
-                            className="w-full text-left flex items-center gap-2 text-dark transition-colors drop-shadow-lg"
-                            style={{ color: 'var(--color-dark)' }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.color = 'var(--color-primary)';
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.color = 'var(--color-dark)';
-                            }}
-                          >
-                            <span className="text-2xl">🇨🇿</span>
-                            <span className="text-sm">Čeština</span>
-                          </button>
-                        </li>
-                        <li>
-                          <button 
-                            onClick={() => {
-                              setIsLanguageMenuClosing(true);
-                              setIsLanguageMenuOpen(false);
-                            }}
-                            className="w-full text-left flex items-center gap-2 text-dark transition-colors drop-shadow-lg"
-                            style={{ color: 'var(--color-dark)' }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.color = 'var(--color-primary)';
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.color = 'var(--color-dark)';
-                            }}
-                          >
-                            <span className="text-2xl">🇬🇧</span>
-                            <span className="text-sm">Angličtina</span>
-                          </button>
-                        </li>
-                        <li>
-                          <button 
-                            onClick={() => {
-                              setIsLanguageMenuClosing(true);
-                              setIsLanguageMenuOpen(false);
-                            }}
-                            className="w-full text-left flex items-center gap-2 text-dark transition-colors drop-shadow-lg"
-                            style={{ color: 'var(--color-dark)' }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.color = 'var(--color-primary)';
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.color = 'var(--color-dark)';
-                            }}
-                          >
-                            <span className="text-2xl">🇷🇺</span>
-                            <span className="text-sm">Ruština</span>
-                          </button>
-                        </li>
-                        <li>
-                          <button 
-                            onClick={() => {
-                              setIsLanguageMenuClosing(true);
-                              setIsLanguageMenuOpen(false);
-                            }}
-                            className="w-full text-left flex items-center gap-2 text-dark transition-colors drop-shadow-lg"
-                            style={{ color: 'var(--color-dark)' }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.color = 'var(--color-primary)';
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.color = 'var(--color-dark)';
-                            }}
-                          >
-                            <span className="text-2xl">🇺🇦</span>
-                            <span className="text-sm">Ukrajinština</span>
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
           </div>
         </div>
+
+        {/* Language Dropdown - Mobile - positioned outside glass container */}
+        {(isLanguageMenuOpen || isLanguageMenuClosing) && (
+          <div className="md:hidden absolute right-0 top-full mt-2 px-3 z-50" style={{ isolation: 'isolate' }}>
+            <div className={`dropdown-container ${isLanguageMenuClosing ? 'dropdown-closing' : ''}`}>
+              <div className="h-5"></div>
+              <div className="relative">
+                <div className="liquid-glass-apple rounded-2xl px-3 py-3 shadow-xl relative z-0" style={{ willChange: 'opacity, transform' }}>
+                  <ul className="space-y-2">
+                    <li>
+                      <button 
+                        onClick={() => {
+                          setIsLanguageMenuClosing(true);
+                          setIsLanguageMenuOpen(false);
+                        }}
+                        className="w-full text-left flex items-center gap-2 text-dark transition-colors drop-shadow-lg"
+                        style={{ color: 'var(--color-dark)' }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = 'var(--color-primary)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = 'var(--color-dark)';
+                        }}
+                      >
+                        <span className="text-2xl">🇨🇿</span>
+                        <span className="text-sm">Čeština</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button 
+                        onClick={() => {
+                          setIsLanguageMenuClosing(true);
+                          setIsLanguageMenuOpen(false);
+                        }}
+                        className="w-full text-left flex items-center gap-2 text-dark transition-colors drop-shadow-lg"
+                        style={{ color: 'var(--color-dark)' }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = 'var(--color-primary)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = 'var(--color-dark)';
+                        }}
+                      >
+                        <span className="text-2xl">🇬🇧</span>
+                        <span className="text-sm">Angličtina</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button 
+                        onClick={() => {
+                          setIsLanguageMenuClosing(true);
+                          setIsLanguageMenuOpen(false);
+                        }}
+                        className="w-full text-left flex items-center gap-2 text-dark transition-colors drop-shadow-lg"
+                        style={{ color: 'var(--color-dark)' }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = 'var(--color-primary)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = 'var(--color-dark)';
+                        }}
+                      >
+                        <span className="text-2xl">🇷🇺</span>
+                        <span className="text-sm">Ruština</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button 
+                        onClick={() => {
+                          setIsLanguageMenuClosing(true);
+                          setIsLanguageMenuOpen(false);
+                        }}
+                        className="w-full text-left flex items-center gap-2 text-dark transition-colors drop-shadow-lg"
+                        style={{ color: 'var(--color-dark)' }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = 'var(--color-primary)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = 'var(--color-dark)';
+                        }}
+                      >
+                        <span className="text-2xl">🇺🇦</span>
+                        <span className="text-sm">Ukrajinština</span>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Mobile Menu - positioned outside glass container */}
         {(isMenuOpen || isMobileMenuClosing) && (
@@ -543,7 +545,7 @@ export default function Navbar() {
             <div className={`dropdown-container ${isMobileMenuClosing ? 'dropdown-closing' : ''}`}>
               <div className="h-5"></div>
               <div className="relative">
-                <div className="liquid-glass-apple rounded-2xl p-5 shadow-xl relative z-0">
+                <div className="liquid-glass-apple rounded-2xl p-5 shadow-xl relative z-0" style={{ willChange: 'opacity, transform' }}>
                   <div className="flex flex-col gap-4">
                     {navLinks.map((link) => {
                       const key = keyFromHref(link.href);
@@ -702,7 +704,7 @@ export default function Navbar() {
 
           {/* Language Dropdown */}
           {(isLanguageMenuOpen || isLanguageMenuClosing) && (
-            <div className={`absolute right-0 z-50 w-auto dropdown-container ${isLanguageMenuClosing ? 'dropdown-closing' : ''}`} style={{ top: '100%', marginTop: 0 }}>
+            <div className={`absolute right-0 z-50 w-auto dropdown-container ${isLanguageMenuClosing ? 'dropdown-closing' : ''}`} style={{ top: '100%', marginTop: 0, isolation: 'isolate' }}>
               {/* Invisible hover bridge to keep menu open while moving pointer down and add spacing */}
               <div className="h-5 md:h-6"></div>
               <div 
@@ -710,7 +712,7 @@ export default function Navbar() {
                 data-notch-side="right"
                 style={{ '--notch-right': languageNotchRight !== null ? `${languageNotchRight}px` : '20px' } as React.CSSProperties}
               >
-                <div className="liquid-glass-apple rounded-2xl px-3 py-3 md:px-4 md:py-4 shadow-xl relative z-0">
+                <div className="liquid-glass-apple rounded-2xl px-3 py-3 md:px-4 md:py-4 shadow-xl relative z-0" style={{ willChange: 'opacity, transform' }}>
                   <ul className="space-y-2">
                     <li>
                       <button className="w-full text-left flex items-center gap-2 text-dark transition-colors drop-shadow-lg"

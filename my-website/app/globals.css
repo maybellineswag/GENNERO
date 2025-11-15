@@ -320,7 +320,8 @@ h6 {
 }
 
 /* Dropdown animation - Stripe-style fade and scale */
-.dropdown-with-notch .liquid-glass-apple {
+.dropdown-with-notch .liquid-glass-apple,
+.dropdown-container .liquid-glass-apple {
   animation: dropdownFadeIn 250ms ease-out;
   transition: opacity 250ms ease-out, transform 250ms ease-out;
 }
