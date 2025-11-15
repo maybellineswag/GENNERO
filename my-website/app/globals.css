@@ -496,6 +496,10 @@ button:hover > .arrow-float-hover {
     padding-right: 1.5rem !important;
   }
   
+  .hero-title-mobile {
+    font-size: clamp(2.75rem, 8vw, 3.5rem) !important;
+  }
+  
   .liquid-glass-popup {
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--font-size-sm);

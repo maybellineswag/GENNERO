@@ -39,8 +39,30 @@ export default function Hero() {
 
         {/* Centered text content */}
         <div className="flex-1 flex flex-col items-start md:items-center justify-start md:justify-center text-left md:text-center px-4 md:px-8 pt-16 md:pt-12 lg:pt-32">
+          {/* Alert: Nově nabízíme také kosmetologii - Mobile only, above heading */}
+          <div className="mb-2 md:hidden">
+            <div className="liquid-glass-apple rounded-full px-3 py-1.5 inline-flex items-center gap-1.5">
+              <span
+                className="inline-block w-1.5 h-1.5 rounded-full shrink-0"
+                style={{
+                  backgroundColor: '#f7c7db',
+                  animation: 'pinkGlow 2s ease-in-out infinite'
+                }}
+                aria-hidden="true"
+              />
+              <span
+                className="text-dark text-xs font-medium"
+                style={{
+                  fontFamily: 'var(--font-daikon), system-ui, sans-serif'
+                }}
+              >
+                Nově nabízíme také kosmetologii!
+              </span>
+            </div>
+          </div>
+
           <h1
-            className="text-[2rem] md:text-6xl lg:text-7xl xl:text-8xl font-semibold !text-white mb-2 md:mb-3 md:whitespace-nowrap mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-soft px-0 md:px-4 w-full md:w-auto md:leading-tight"
+            className="hero-title-mobile md:text-6xl lg:text-7xl xl:text-8xl font-semibold !text-white mb-2 md:mb-3 md:whitespace-nowrap mx-0 md:mx-auto text-left md:text-center text-shadow text-shadow-soft px-0 md:px-4 w-full md:w-auto md:leading-tight"
             style={{ 
               color: '#ffffff', 
               fontWeight: 600,
@@ -53,9 +75,9 @@ export default function Hero() {
               maxWidth: '100%'
             }}
           >
-            Péče, která začíná{' '}
+            <span className="block md:inline">Péče, která začíná</span>{' '}
             <span
-              className="inline-block text-primary mix-blend-screen brightness-110 text-shadow"
+              className="block md:inline-block text-primary mix-blend-screen brightness-110 text-shadow"
               style={{
                 // Slightly stronger for the accent word
                 ['--ts-y' as any]: '1px',
@@ -232,8 +254,8 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Alert: Nově nabízíme také kosmetologii */}
-          <div className="flex items-center justify-start md:justify-center gap-2 mt-4 md:mt-5">
+          {/* Alert: Nově nabízíme také kosmetologii - Desktop only, at bottom */}
+          <div className="hidden md:flex items-center justify-center gap-2 mt-4 md:mt-5">
             <span
               className="inline-block w-2 h-2 rounded-full shrink-0"
               style={{
