@@ -108,14 +108,14 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
   ];
 
   return (
-    <section className={`relative w-full ${height} flex overflow-x-hidden max-w-full`}>
+    <section className={`relative w-full ${height} flex flex-col md:flex-row overflow-x-hidden max-w-full`}>
       {/* Gynecology Side - Left */}
       <div 
         className={`relative overflow-hidden ${
-          expandedSide === 'cosmetology' ? 'w-0 opacity-0' :
+          expandedSide === 'cosmetology' ? 'w-0 opacity-0 md:w-0 md:opacity-0 h-0 md:h-auto' :
           expandedSide === 'gynecology' ? 'w-full' :
-          hoveredSide === 'gynecology' ? 'w-2/3' : 
-          hoveredSide === 'cosmetology' ? 'w-1/3' : 'w-1/2'
+          hoveredSide === 'gynecology' ? 'w-full md:w-2/3 h-[50vh] md:h-auto' : 
+          hoveredSide === 'cosmetology' ? 'w-full md:w-1/3 h-[50vh] md:h-auto' : 'w-full md:w-1/2 h-[50vh] md:h-auto'
         }`}
         style={{
           willChange: 'width, opacity',
@@ -124,10 +124,10 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
           perspective: '1000px',
           isolation: 'isolate',
           contain: 'layout style paint',
-          transition: 'width 0.95s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1)'
+          transition: 'width 0.95s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), height 0.95s cubic-bezier(0.16, 1, 0.3, 1)'
         }}
-        onMouseEnter={() => !expandedSide && setHoveredSide('gynecology')}
-        onMouseLeave={() => !expandedSide && setHoveredSide(null)}
+        onMouseEnter={() => !expandedSide && window.innerWidth >= 768 && setHoveredSide('gynecology')}
+        onMouseLeave={() => !expandedSide && window.innerWidth >= 768 && setHoveredSide(null)}
       >
         {/* Background Image */}
         <div 
@@ -184,6 +184,55 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
                 selectedCardIndex !== null ? 'opacity-0 max-h-0 overflow-hidden' : 'opacity-100'
               }`}
             >
+                {/* Simple Link version - always shown on mobile */}
+                <div className="md:hidden">
+                  <h2 
+                    className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-0 text-shadow drop-shadow-xl whitespace-nowrap"
+                    style={{ 
+                      fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                      fontWeight: 600,
+                      color: '#ffffff',
+                      lineHeight: '1.1',
+                      ['--ts-y' as any]: '2px',
+                      ['--ts-blur' as any]: '10px',
+                      ['--ts-color' as any]: 'rgba(0,0,0,0.6)'
+                    }}
+                  >
+                    Objevte
+                  </h2>
+                  <Link 
+                    href="/sluzby#gynekologie"
+                    className="group inline-flex items-center gap-2 whitespace-nowrap -mt-1 arrow-float-parent no-underline"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <span 
+                      className="text-3xl md:text-4xl lg:text-5xl font-semibold text-primary text-shadow drop-shadow-xl"
+                      style={{ 
+                        fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                        fontWeight: 600,
+                        paddingBottom: '2px',
+                        lineHeight: '1.1',
+                        ['--ts-y' as any]: '2px',
+                        ['--ts-blur' as any]: '10px',
+                        ['--ts-color' as any]: 'rgba(0,0,0,0.6)',
+                        textDecoration: 'none'
+                      }}
+                    >
+                      Gynekologii
+                    </span>
+                    <svg 
+                      className="w-7 h-7 md:w-8 md:h-8 text-primary arrow-float-hover drop-shadow-lg" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </Link>
+                </div>
+
+                {/* Desktop version - clickToExpand or simple Link */}
+                <div className="hidden md:block">
                 {clickToExpand ? (
                   <>
                     {/* Go Back Button - visible when expanded and no card selected */}
@@ -334,11 +383,12 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
               </Link>
                 </>
               )}
+                </div>
             </div>
 
-            {/* Expanded content - visible on hover or click */}
+            {/* Expanded content - visible on hover or click - hidden on mobile */}
             <div 
-              className={`transition-all duration-500 w-full ${
+              className={`hidden md:block transition-all duration-500 w-full ${
                 (hoveredSide === 'gynecology' || expandedSide === 'gynecology')
                   ? expandedSide === 'gynecology' 
                     ? 'opacity-100 max-h-none mt-4 md:mt-5' 
@@ -1165,10 +1215,10 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
         </div>
       </div>
 
-      {/* Diagonal Divider line */}
+      {/* Diagonal Divider line - hidden on mobile */}
       {expandedSide === null && (
       <div 
-        className="absolute top-0 h-full w-1 bg-gradient-to-b from-transparent via-white/50 to-transparent z-10 pointer-events-none"
+        className="hidden md:block absolute top-0 h-full w-1 bg-gradient-to-b from-transparent via-white/50 to-transparent z-10 pointer-events-none"
         style={{
           left: hoveredSide === 'gynecology' ? '66.666%' : 
                 hoveredSide === 'cosmetology' ? '33.333%' : '50%',
@@ -1190,10 +1240,10 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
       {/* Cosmetology Side - Right */}
       <div 
         className={`relative overflow-hidden ${
-          expandedSide === 'gynecology' ? 'w-0 opacity-0' :
+          expandedSide === 'gynecology' ? 'w-0 opacity-0 md:w-0 md:opacity-0 h-0 md:h-auto' :
           expandedSide === 'cosmetology' ? 'w-full' :
-          hoveredSide === 'cosmetology' ? 'w-2/3' : 
-          hoveredSide === 'gynecology' ? 'w-1/3' : 'w-1/2'
+          hoveredSide === 'cosmetology' ? 'w-full md:w-2/3 h-[50vh] md:h-auto' : 
+          hoveredSide === 'gynecology' ? 'w-full md:w-1/3 h-[50vh] md:h-auto' : 'w-full md:w-1/2 h-[50vh] md:h-auto'
         }`}
         style={{
           willChange: 'width, opacity',
@@ -1202,10 +1252,10 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
           perspective: '1000px',
           isolation: 'isolate',
           contain: 'layout style paint',
-          transition: 'width 0.95s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1)'
+          transition: 'width 0.95s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), height 0.95s cubic-bezier(0.16, 1, 0.3, 1)'
         }}
-        onMouseEnter={() => !expandedSide && setHoveredSide('cosmetology')}
-        onMouseLeave={() => !expandedSide && setHoveredSide(null)}
+        onMouseEnter={() => !expandedSide && window.innerWidth >= 768 && setHoveredSide('cosmetology')}
+        onMouseLeave={() => !expandedSide && window.innerWidth >= 768 && setHoveredSide(null)}
       >
         {/* Background Image */}
         <div 
@@ -1296,6 +1346,55 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
                 selectedCardIndex !== null ? 'opacity-0 max-h-0 overflow-hidden' : 'opacity-100'
               }`}
             >
+                {/* Simple Link version - always shown on mobile */}
+                <div className="md:hidden">
+                  <h2 
+                    className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-0 text-shadow drop-shadow-xl whitespace-nowrap"
+                    style={{ 
+                      fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                      fontWeight: 600,
+                      color: '#ffffff',
+                      lineHeight: '1.1',
+                      ['--ts-y' as any]: '2px',
+                      ['--ts-blur' as any]: '10px',
+                      ['--ts-color' as any]: 'rgba(0,0,0,0.6)'
+                    }}
+                  >
+                    Objevte
+                  </h2>
+                  <Link 
+                    href="/sluzby#kosmetologie"
+                    className="group inline-flex items-center gap-2 whitespace-nowrap -mt-1 arrow-float-parent no-underline"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <span 
+                      className="text-3xl md:text-4xl lg:text-5xl font-semibold text-accent text-shadow drop-shadow-xl"
+                      style={{ 
+                        fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+                        fontWeight: 600,
+                        paddingBottom: '2px',
+                        lineHeight: '1.1',
+                        ['--ts-y' as any]: '2px',
+                        ['--ts-blur' as any]: '10px',
+                        ['--ts-color' as any]: 'rgba(0,0,0,0.6)',
+                        textDecoration: 'none'
+                      }}
+                    >
+                      kosmetologii
+                    </span>
+                    <svg 
+                      className="w-7 h-7 md:w-8 md:h-8 text-accent arrow-float-hover drop-shadow-lg" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </Link>
+                </div>
+
+                {/* Desktop version - clickToExpand or simple Link */}
+                <div className="hidden md:block">
                 {clickToExpand ? (
                   <>
                     {/* Go Back Button - visible when expanded and no card selected */}
@@ -1446,11 +1545,12 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
               </Link>
                 </>
               )}
+                </div>
             </div>
 
-            {/* Expanded content - visible on hover or click */}
+            {/* Expanded content - visible on hover or click - hidden on mobile */}
             <div 
-              className={`transition-all duration-500 w-full ${
+              className={`hidden md:block transition-all duration-500 w-full ${
                 (hoveredSide === 'cosmetology' || expandedSide === 'cosmetology')
                   ? expandedSide === 'cosmetology' 
                     ? 'opacity-100 max-h-none mt-4 md:mt-5' 
@@ -2168,7 +2268,7 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
                   <Link
                     key={service.label}
                     href={service.href}
-                    className="group flex items-center gap-3 text-white hover:text-accent p-2 rounded-2xl hover:bg-white/10 w-fit transition-colors duration-75 ease-out"
+                    className={`group flex items-center gap-3 text-white hover:text-accent p-2 rounded-2xl hover:bg-white/10 w-fit transition-colors duration-75 ease-out ${service.label === 'Mezoterapie' ? 'md:hidden' : ''}`}
                     style={{
                       opacity: hoveredSide === 'cosmetology' ? 1 : 0,
                       transform: hoveredSide === 'cosmetology' ? 'translateY(0)' : 'translateY(-8px)',
