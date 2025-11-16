@@ -54,60 +54,33 @@ export default function AboutUs() {
           </h2>
 
           {/* Introduction Paragraph */}
-          <div className="text-xs md:text-lg max-w-4xl mb-8 md:mb-10 leading-relaxed text-center w-full">
-            {/* Mobile: Two paragraphs */}
-            <div className="md:hidden flex flex-col gap-3">
-              <p 
-                style={{ 
-                  fontFamily: 'var(--font-daikon), system-ui, sans-serif',
-                  fontWeight: 500,
-                  lineHeight: '1.6',
-                  color: '#112250'
-                }}
-              >
-                Místo, kde ženské zdraví není jen povinností, ale upřímnou pozorností ke každé ženě. Spojujeme lékařskou odbornost s lidským a vřelým přístupem, aby se pacientky cítily jistě a v bezpečí.
-              </p>
-              <p 
-                style={{ 
-                  fontFamily: 'var(--font-daikon), system-ui, sans-serif',
-                  fontWeight: 500,
-                  lineHeight: '1.6',
-                  color: '#112250'
-                }}
-              >
-                Gennero je moderní gynekologická klinika v Teplicích. Spojujeme lékařskou odbornost s lidským přístupem, aby se každá žena cítila jistě a respektovaně.
-              </p>
-            </div>
-            
-            {/* Desktop: Single paragraph */}
-            <p 
-              className="hidden md:block"
-              style={{ 
-                fontFamily: 'var(--font-daikon), system-ui, sans-serif',
-                fontWeight: 500,
-                lineHeight: '1.6',
-                color: '#112250'
-              }}
-            >
-              Místo, kde ženské zdraví není jen povinností, ale upřímnou pozorností ke každé ženě. Spojujeme lékařskou odbornost s lidským a vřelým přístupem, aby se pacientky cítily jistě a v bezpečí. Gennero je moderní gynekologická klinika v Teplicích. Spojujeme lékařskou odbornost s lidským přístupem, aby se každá žena cítila jistě a respektovaně.
-            </p>
-          </div>
+          <p 
+            className="text-xs md:text-lg max-w-4xl mb-8 md:mb-10 leading-relaxed text-center w-full"
+            style={{ 
+              fontFamily: 'var(--font-daikon), system-ui, sans-serif',
+              fontWeight: 500,
+              lineHeight: '1.6',
+              color: '#112250'
+            }}
+          >
+            Místo, kde ženské zdraví není jen povinností, ale upřímnou pozorností ke každé ženě. Spojujeme lékařskou odbornost s lidským a vřelým přístupem, aby se pacientky cítily jistě a v bezpečí.
+          </p>
 
           {/* Values Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 w-full max-w-6xl mb-10 md:mb-12 overflow-visible">
             {values.map((value, index) => (
               <div
                 key={value.title}
-                className="relative flex flex-col rounded-2xl overflow-visible px-4 py-6 pb-10 md:px-5 md:py-7 md:pb-10"
+                className="relative flex flex-col rounded-2xl overflow-visible px-4 py-6 pb-10 md:px-5 md:py-7 md:pb-10 h-[220px] md:h-auto"
                 style={{ 
                   backgroundColor: value.bgColor
                 }}
               >
                 {/* Text Content at Top */}
-                <div className="flex flex-col mb-7 md:mb-8 relative z-10">
+                <div className="flex flex-col mb-7 md:mb-8 relative z-10 flex-1">
                   {/* Title */}
                   <h3 
-                    className="font-semibold mb-2 text-dark leading-tight"
+                    className="font-semibold mb-2 text-dark leading-tight min-h-[3rem] md:min-h-0"
                     style={{ 
                       fontFamily: 'var(--font-daikon), system-ui, sans-serif',
                       fontWeight: 600,

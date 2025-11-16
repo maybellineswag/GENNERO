@@ -79,14 +79,14 @@ export default function OurTeam() {
                   {/* Spacer for initial left padding - allows cards to scroll past edge */}
                   <div className="flex-shrink-0 w-6 md:w-12 lg:w-16"></div>
                 {doctors.map((doctor, index) => (
-                  <div key={index} className={`flex-shrink-0 ${index === 0 ? 'w-[320px] md:w-[380px]' : 'w-[300px] md:w-[360px]'}`}>
+                  <div key={index} className={`flex-shrink-0 ${index === 0 ? 'w-[280px] md:w-[380px]' : 'w-[260px] md:w-[360px]'}`}>
                     {/* Card with Background Image - Clickable */}
                     <Link 
                       href={doctor.href}
                       className="block cursor-pointer"
                     >
                       <div 
-                        className={`relative rounded-2xl overflow-hidden transition-all duration-300 ${index === 0 ? 'h-[215px] md:h-[260px]' : 'h-[200px] md:h-[240px]'}`}
+                        className={`relative rounded-2xl overflow-hidden transition-all duration-300 ${index === 0 ? 'h-[180px] md:h-[260px]' : 'h-[170px] md:h-[240px]'}`}
                         style={{
                           boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1)',
                           transform: 'scale(1)',
