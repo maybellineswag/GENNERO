@@ -114,8 +114,8 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
         className={`relative overflow-hidden ${
           expandedSide === 'cosmetology' ? 'w-0 opacity-0 md:w-0 md:opacity-0 h-0 md:h-auto' :
           expandedSide === 'gynecology' ? 'w-full' :
-          hoveredSide === 'gynecology' ? 'w-full md:w-2/3 h-[50vh] md:h-auto' : 
-          hoveredSide === 'cosmetology' ? 'w-full md:w-1/3 h-[50vh] md:h-auto' : 'w-full md:w-1/2 h-[50vh] md:h-auto'
+          hoveredSide === 'gynecology' ? 'w-full md:w-2/3 h-[45vh] md:h-auto' : 
+          hoveredSide === 'cosmetology' ? 'w-full md:w-1/3 h-[45vh] md:h-auto' : 'w-full md:w-1/2 h-[45vh] md:h-auto'
         }`}
         style={{
           willChange: 'width, opacity',
@@ -1242,8 +1242,8 @@ export default function SplitServices({ height = 'h-[70vh] md:h-[80vh]', clickTo
         className={`relative overflow-hidden ${
           expandedSide === 'gynecology' ? 'w-0 opacity-0 md:w-0 md:opacity-0 h-0 md:h-auto' :
           expandedSide === 'cosmetology' ? 'w-full' :
-          hoveredSide === 'cosmetology' ? 'w-full md:w-2/3 h-[50vh] md:h-auto' : 
-          hoveredSide === 'gynecology' ? 'w-full md:w-1/3 h-[50vh] md:h-auto' : 'w-full md:w-1/2 h-[50vh] md:h-auto'
+          hoveredSide === 'cosmetology' ? 'w-full md:w-2/3 h-[45vh] md:h-auto' : 
+          hoveredSide === 'gynecology' ? 'w-full md:w-1/3 h-[45vh] md:h-auto' : 'w-full md:w-1/2 h-[45vh] md:h-auto'
         }`}
         style={{
           willChange: 'width, opacity',

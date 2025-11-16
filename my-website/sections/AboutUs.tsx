@@ -42,7 +42,7 @@ export default function AboutUs() {
         <div className="flex flex-col items-center">
           {/* Heading */}
           <h2 
-            className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 md:mb-6 text-center"
+            className="about-us-title text-base md:text-4xl lg:text-5xl font-semibold mb-4 md:mb-6 text-center"
             style={{ 
               fontFamily: 'var(--font-daikon), system-ui, sans-serif',
               fontWeight: 600,
@@ -55,7 +55,7 @@ export default function AboutUs() {
 
           {/* Introduction Paragraph */}
           <p 
-            className="text-base md:text-lg max-w-4xl mb-8 md:mb-10 leading-relaxed text-center w-full"
+            className="text-xs md:text-lg max-w-4xl mb-8 md:mb-10 leading-relaxed text-center w-full"
             style={{ 
               fontFamily: 'var(--font-daikon), system-ui, sans-serif',
               fontWeight: 500,

@@ -491,6 +491,10 @@ button:hover > .arrow-float-hover {
     font-size: clamp(2.5rem, 7.5vw, 3.25rem) !important;
   }
   
+  .about-us-title {
+    font-size: 1.75rem !important;
+  }
+  
   .liquid-glass-popup {
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--font-size-sm);
